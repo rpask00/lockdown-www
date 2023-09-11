@@ -1,0 +1,7 @@
+<mat-selection-list #loginsRef>
+  <section class="login-wrapper mt-2 pt-2" *ngFor="let login of logins">
+    <mat-list-option >
+      <lockdown-login [login]="login"></lockdown-login>
+    </mat-list-option>
+  </section>
+</mat-selection-list>

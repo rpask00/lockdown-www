@@ -14,10 +14,16 @@ import {rootReducer} from "./store/root.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {ToastrModule} from "ngx-toastr";
 import {RootEffects} from "./store/root.effects";
+import { LoginsListComponent } from './logins-list/logins-list.component';
+import { LoginComponent } from './logins-list/login/login.component';
+import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginsListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import {RootEffects} from "./store/root.effects";
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatLegacyChipsModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

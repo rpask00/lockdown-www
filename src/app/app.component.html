@@ -8,15 +8,15 @@
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer #drawer class="app-sidenav" [mode]="window.innerWidth > 600 ? 'side' : 'over'">
     <mat-nav-list>
-      <mat-list-item routerLink="todo/all">
+      <mat-list-item routerLink="logins">
         <span><mat-icon class="mr-3">lock</mat-icon><span>Logins</span></span>
       </mat-list-item>
 
-      <mat-list-item routerLink="todo/DONE">
+      <mat-list-item routerLink="payments">
         <span><mat-icon class="mr-3">credit_card</mat-icon><span>Payments</span></span>
       </mat-list-item>
 
-      <mat-list-item routerLink="todo/ACTIVE">
+      <mat-list-item routerLink="secured-notes">
         <span><mat-icon class="mr-3">note</mat-icon><span>Secured Notes</span></span>
       </mat-list-item>
     </mat-nav-list>

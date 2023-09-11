@@ -4,7 +4,8 @@ export interface Login {
   email: string;
   password: string;
   usedAt: string;
-  linked_websites: string[]
+  linked_websites: string[],
+  collections: string[],
 }
 
 

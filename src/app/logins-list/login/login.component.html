@@ -1,27 +1,25 @@
 <section class="d-flex login-container">
   <section class="image">
-        <img src="https://d2erpoudwvue5y.cloudfront.net/_46x30/allegro_pl@2x.png" alt="">
+    <img src="https://d2erpoudwvue5y.cloudfront.net/_46x30/allegro_pl@2x.png" alt="">
   </section>
   <section class="item-name">
     <h2 class="item-name__title m-0">{{ linked_websites }}</h2>
     <p class="item-name__login m-0"> {{login?.email || login?.username}}</p>
   </section>
 
-  <section class="usedAt d-flex align-items-center"><p class="m-0"> {{login?.usedAt | date : 'dd.MM.YYYY'}} </p></section>
-  <section class="collections">
-    <mat-chip-listbox>
-      <mat-chip>Entertainment</mat-chip>
-      <mat-chip>Shopping</mat-chip>
-      <mat-chip>Utilities</mat-chip>
-      <mat-chip>Entertainment</mat-chip>
-      <mat-chip>Shopping</mat-chip>
-      <mat-chip>Utilities</mat-chip>
-      <mat-chip>Entertainment</mat-chip>
-      <mat-chip>Shopping</mat-chip>
-      <mat-chip>Utilities</mat-chip>
-    </mat-chip-listbox>
+  <section class="usedAt d-flex align-items-center"><p class="m-0"> {{login?.usedAt | date : 'dd.MM.YYYY'}} </p>
   </section>
-
+  <section class="collections d-flex align-items-center">
+    <mat-chip-listbox *ngIf="login && login.collections">
+      <mat-chip *ngFor="let collection of login.collections.slice(0,3)">{{collection}}</mat-chip>
+    </mat-chip-listbox>
+    <ng-container *ngIf="login && login.collections && login.collections.length > 3">
+      <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">{{login.collections.length - 3 }} more..</button>
+      <mat-menu #menu="matMenu">
+        <div mat-menu-item *ngFor="let collection of login.collections.slice(3)">{{collection}}</div>
+      </mat-menu>
+    </ng-container>
+  </section>
   <section class="actions">
 
   </section>

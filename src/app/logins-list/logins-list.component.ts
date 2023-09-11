@@ -16,6 +16,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities', 'Social Media', "Utilities", 'Games', 'Streaming'],
     },
     {
       id: 1,
@@ -24,6 +25,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities', 'Social Media', "Utilities", 'Games', 'Streaming'],
     },
     {
       id: 1,
@@ -32,6 +34,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities'],
     },
     {
       id: 1,
@@ -40,6 +43,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities'],
     },
     {
       id: 1,
@@ -48,6 +52,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities'],
     },
     {
       id: 1,
@@ -56,6 +61,7 @@ export class LoginsListComponent {
       password: '123456',
       usedAt: '2019-01-01',
       linked_websites: ['google.com'],
+      collections: ['Utilities'],
     },
   ]
 }

@@ -1,10 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Login} from "../../store/root.state";
 
 @Component({
   selector: 'lockdown-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   @Input() login?: Login;
@@ -15,4 +16,6 @@ export class LoginComponent {
     }
     return ''
   }
+
+
 }

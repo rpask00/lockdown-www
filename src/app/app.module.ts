@@ -14,16 +14,20 @@ import {rootReducer} from "./store/root.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {ToastrModule} from "ngx-toastr";
 import {RootEffects} from "./store/root.effects";
-import { LoginsListComponent } from './logins-list/logins-list.component';
-import { LoginComponent } from './logins-list/login/login.component';
-import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
+import {LoginsListComponent} from './logins-list/logins-list.component';
+import {LoginComponent} from './logins-list/login/login.component';
 import {MatChipsModule} from "@angular/material/chips";
+import {MatMenuModule} from "@angular/material/menu";
+import {ClickStopPropagationDirective} from "./directives/click-stop-propagation.directive";
+import {ClickPreventDefaultDirective} from "./directives/click-prevent-default.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginsListComponent,
-    LoginComponent
+    LoginComponent,
+    ClickStopPropagationDirective,
+    ClickPreventDefaultDirective
   ],
   imports: [
     BrowserModule,
@@ -39,8 +43,8 @@ import {MatChipsModule} from "@angular/material/chips";
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatLegacyChipsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

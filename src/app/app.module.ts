@@ -20,6 +20,12 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatMenuModule} from "@angular/material/menu";
 import {ClickStopPropagationDirective} from "./directives/click-stop-propagation.directive";
 import {ClickPreventDefaultDirective} from "./directives/click-prevent-default.directive";
+import { LoginDetailsComponent } from './logins-list/login-details/login-details.component';
+import {RootState} from "./store/root.state";
+
+export interface AppState {
+  root: RootState
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +33,8 @@ import {ClickPreventDefaultDirective} from "./directives/click-prevent-default.d
     LoginsListComponent,
     LoginComponent,
     ClickStopPropagationDirective,
-    ClickPreventDefaultDirective
+    ClickPreventDefaultDirective,
+    LoginDetailsComponent
   ],
   imports: [
     BrowserModule,

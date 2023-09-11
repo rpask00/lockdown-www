@@ -10,6 +10,9 @@ export interface Login {
 
 
 export interface RootState {
+  login?: Login;
+  loginLoading?: boolean;
+  detailsOpen?: boolean;
 }
 
 export const initialState: RootState = {};

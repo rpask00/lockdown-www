@@ -1,14 +1,21 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Login} from "../../store/root.state";
+import {Login, RootState} from "../../store/root.state";
+import {Store} from "@ngrx/store";
+import {loginQuery} from "../../store/root.actions";
 
 @Component({
   selector: 'lockdown-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   @Input() login?: Login;
+
+  constructor(
+    private _store: Store<RootState>,
+  ) {
+  }
 
   get linked_websites() {
     if (this.login?.linked_websites && this.login?.linked_websites?.length > 0) {
@@ -18,4 +25,7 @@ export class LoginComponent {
   }
 
 
+  showDetails() {
+    this._store.dispatch(loginQuery.showDetails())
+  }
 }

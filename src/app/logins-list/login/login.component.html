@@ -20,7 +20,13 @@
       </mat-menu>
     </ng-container>
   </section>
-  <section class="actions">
-
+  <section class="actions d-flex align-items-center">
+    <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">...</button>
+    <mat-menu #menu="matMenu">
+      <div mat-menu-item><mat-icon>edit</mat-icon> See details</div>
+      <div mat-menu-item><mat-icon>redo</mat-icon> Go to website</div>
+      <div mat-menu-item><mat-icon>file_copy</mat-icon> Copy password</div>
+      <div mat-menu-item><mat-icon>perm_identity</mat-icon> Copy email</div>
+    </mat-menu>
   </section>
 </section>

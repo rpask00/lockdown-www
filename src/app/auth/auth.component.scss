@@ -9,11 +9,26 @@
   -webkit-box-shadow: 6px 6px 43px 4px rgba(228, 51, 222, 1);
   -moz-box-shadow: 6px 6px 43px 4px rgba(228, 51, 222, 1);
   box-shadow: 6px 6px 43px 4px rgba(228, 51, 222, 1);
+
+  img.login-user {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .login-form {
     img.login-user {
       width: 40%;
-      margin-left: auto;
-      margin-right: auto;
+    }
+  }
+
+  .register-form {
+    img.login-user {
+      width: 20%;
+    }
+
+    h1{
+      color: white;
+      text-align: center;
     }
   }
 }

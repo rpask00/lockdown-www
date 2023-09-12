@@ -24,8 +24,8 @@ import {LoginDetailsComponent} from './logins-list/login-details/login-details.c
 import {RootState} from "./store/root.state";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoaderTransparentComponent} from "./components/loader-transparent/loader-transparent.component";
-import { AuthComponent } from './auth/auth.component';
-import { HomeComponent } from './home/home.component';
+import {AuthComponent} from './auth/auth.component';
+import {HomeComponent} from './home/home.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -43,7 +43,7 @@ export interface AppState {
     LoginDetailsComponent,
     LoaderTransparentComponent,
     AuthComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

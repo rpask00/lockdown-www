@@ -1,10 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {MatDrawer} from "@angular/material/sidenav";
-import {Store} from "@ngrx/store";
-import {map} from "rxjs";
-import {AppState} from "./app.module";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs/operators";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'lockdown-root',
@@ -12,4 +6,7 @@ import {filter} from "rxjs/operators";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor() {
+
+  }
 }

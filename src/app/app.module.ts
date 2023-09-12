@@ -20,8 +20,10 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatMenuModule} from "@angular/material/menu";
 import {ClickStopPropagationDirective} from "./directives/click-stop-propagation.directive";
 import {ClickPreventDefaultDirective} from "./directives/click-prevent-default.directive";
-import { LoginDetailsComponent } from './logins-list/login-details/login-details.component';
+import {LoginDetailsComponent} from './logins-list/login-details/login-details.component';
 import {RootState} from "./store/root.state";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {LoaderTransparentComponent} from "./components/loader-transparent/loader-transparent.component";
 
 export interface AppState {
   root: RootState
@@ -34,7 +36,8 @@ export interface AppState {
     LoginComponent,
     ClickStopPropagationDirective,
     ClickPreventDefaultDirective,
-    LoginDetailsComponent
+    LoginDetailsComponent,
+    LoaderTransparentComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ export interface AppState {
     MatListModule,
     MatButtonModule,
     MatChipsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

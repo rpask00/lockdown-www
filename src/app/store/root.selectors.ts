@@ -4,4 +4,5 @@ import {RootState} from "./root.state";
 
 
 export const selectRoot = createSelector((state: AppState) => state, (state) => state.root)
-export const selectDetailsOpen = createSelector(selectRoot, (state: RootState) => state.detailsOpen || false);
+export const selectLogin = createSelector(selectRoot, (state: RootState) => state.login);
+export const selectLoginLoading = createSelector(selectRoot, (state: RootState) => state.loginLoading || false);

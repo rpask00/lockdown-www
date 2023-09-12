@@ -1,5 +1,8 @@
+
+export type IdType = number | string;
+
 export interface Login {
-  id: number;
+  id: IdType;
   username: string;
   email: string;
   password: string;

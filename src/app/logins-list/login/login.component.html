@@ -4,10 +4,10 @@
   </section>
   <section class="item-name">
     <h2 class="item-name__title m-0">{{ linked_websites }}</h2>
-    <p class="item-name__login m-0"> {{login?.email || login?.username}}</p>
+    <p class="item-name__login m-0"> {{login.email || login.username}}</p>
   </section>
 
-  <section class="usedAt d-flex align-items-center"><p class="m-0"> {{login?.usedAt | date : 'dd.MM.YYYY'}} </p>
+  <section class="usedAt d-flex align-items-center"><p class="m-0"> {{login.usedAt | date : 'dd.MM.YYYY'}} </p>
   </section>
   <section class="collections d-flex align-items-center">
     <mat-chip-listbox *ngIf="login && login.collections">

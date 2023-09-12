@@ -26,6 +26,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoaderTransparentComponent} from "./components/loader-transparent/loader-transparent.component";
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 export interface AppState {
   root: RootState
@@ -59,7 +61,9 @@ export interface AppState {
     MatButtonModule,
     MatChipsModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

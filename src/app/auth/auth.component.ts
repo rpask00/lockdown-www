@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'lockdown-auth',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  constructor(
+    private _fb: FormBuilder,
+  ) {
+  }
+
+  public showLogin = true;
+
+  readonly loginForm = this._fb.group({
+    login: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+
+  login() {
+
+  }
 
 }

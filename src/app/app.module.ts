@@ -24,6 +24,8 @@ import {LoginDetailsComponent} from './logins-list/login-details/login-details.c
 import {RootState} from "./store/root.state";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoaderTransparentComponent} from "./components/loader-transparent/loader-transparent.component";
+import { AuthComponent } from './auth/auth.component';
+import { HomeComponent } from './home/home.component';
 
 export interface AppState {
   root: RootState
@@ -37,7 +39,9 @@ export interface AppState {
     ClickStopPropagationDirective,
     ClickPreventDefaultDirective,
     LoginDetailsComponent,
-    LoaderTransparentComponent
+    LoaderTransparentComponent,
+    AuthComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

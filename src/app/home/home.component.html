@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span style="cursor: pointer" routerLink="todo/all">Lockdown</span>
+</mat-toolbar>
+
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer #drawer class="app-sidenav" [mode]="window.innerWidth > 600 ? 'side' : 'over'">
+    <mat-nav-list>
+      <mat-list-item routerLink="logins">
+        <span><mat-icon class="mr-3">lock</mat-icon><span>Logins</span></span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="payments">
+        <span><mat-icon class="mr-3">credit_card</mat-icon><span>Payments</span></span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="secured-notes">
+        <span><mat-icon class="mr-3">note</mat-icon><span>Secured Notes</span></span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <div class="app-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+  <mat-drawer #itemDetails
+              [mode]="'over'"
+              [disableClose]="true"
+              [opened]="detailsOpen$ | async"
+              class="app-sidenav"
+              position="end"
+  >
+    <router-outlet name="details"></router-outlet>
+    <a mat-button [routerLink]="['', {outlets:{details: null}}]">close</a>
+  </mat-drawer>
+</mat-drawer-container>
+
+

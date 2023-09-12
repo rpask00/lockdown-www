@@ -12,17 +12,4 @@ import {filter} from "rxjs/operators";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('itemDetails') protected itemDetails?: MatDrawer;
-  readonly window: Window = window;
-  readonly detailsOpen$ = this._router.events.pipe(
-    filter((e) => e instanceof NavigationEnd),
-    map((e) => /\([^)]*\)/.test((e as NavigationEnd).url))
-  )
-
-  constructor(
-    private _store: Store<AppState>,
-    private _activatedRoute: ActivatedRoute,
-    private _router: Router
-  ) {
-  }
 }

@@ -1,9 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 import {MatDrawer} from "@angular/material/sidenav";
 import {Store} from "@ngrx/store";
-import {selectDetailsOpen} from "./store/root.selectors";
-import {Observable} from "rxjs";
+import {map} from "rxjs";
 import {AppState} from "./app.module";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'lockdown-root',
@@ -13,11 +14,15 @@ import {AppState} from "./app.module";
 export class AppComponent {
   @ViewChild('itemDetails') protected itemDetails?: MatDrawer;
   readonly window: Window = window;
-  readonly detailsOpen$: Observable<boolean> = this._store.select(selectDetailsOpen);
+  readonly detailsOpen$ = this._router.events.pipe(
+    filter((e) => e instanceof NavigationEnd),
+    map((e) => /\([^)]*\)/.test((e as NavigationEnd).url))
+  )
 
   constructor(
     private _store: Store<AppState>,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
   ) {
   }
-
 }

@@ -1,4 +1,4 @@
-<section class="d-flex login-container">
+<section class="d-flex login-container" *ngIf="login">
   <section class="image">
     <img src="https://d2erpoudwvue5y.cloudfront.net/_46x30/allegro_pl@2x.png" alt="">
   </section>
@@ -14,7 +14,9 @@
       <mat-chip *ngFor="let collection of login.collections.slice(0,3)">{{collection}}</mat-chip>
     </mat-chip-listbox>
     <ng-container *ngIf="login && login.collections && login.collections.length > 3">
-      <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">{{login.collections.length - 3 }} more..</button>
+      <button clickStopPropagation clickPreventDefault class="mx-3" mat-button
+              [matMenuTriggerFor]="menu">{{login.collections.length - 3 }} more..
+      </button>
       <mat-menu #menu="matMenu">
         <div mat-menu-item *ngFor="let collection of login.collections.slice(3)">{{collection}}</div>
       </mat-menu>
@@ -23,10 +25,21 @@
   <section class="actions d-flex align-items-center">
     <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">...</button>
     <mat-menu #menu="matMenu">
-      <div mat-menu-item (click)="showDetails()"><mat-icon>edit</mat-icon> See details</div>
-      <div mat-menu-item><mat-icon>redo</mat-icon> Go to website</div>
-      <div mat-menu-item><mat-icon>file_copy</mat-icon> Copy password</div>
-      <div mat-menu-item><mat-icon>perm_identity</mat-icon> Copy email</div>
+      <a [routerLink]="['', {outlets:{details: ['login',login.id]}}]" mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        See details</a>
+      <div mat-menu-item>
+        <mat-icon>redo</mat-icon>
+        Go to website
+      </div>
+      <div mat-menu-item>
+        <mat-icon>file_copy</mat-icon>
+        Copy password
+      </div>
+      <div mat-menu-item>
+        <mat-icon>perm_identity</mat-icon>
+        Copy email
+      </div>
     </mat-menu>
   </section>
 </section>

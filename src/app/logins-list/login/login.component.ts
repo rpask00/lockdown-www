@@ -25,7 +25,5 @@ export class LoginComponent {
   }
 
 
-  showDetails() {
-    this._store.dispatch(loginQuery.showDetails())
-  }
+
 }

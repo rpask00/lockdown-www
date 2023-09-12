@@ -19,7 +19,7 @@ export class LoginsListComponent {
       collections: ['Utilities', 'Social Media', "Utilities", 'Games', 'Streaming'],
     },
     {
-      id: 1,
+      id: 2,
       username: 'insecureee',
       email: 'insecured@gmail.com',
       password: '123456',
@@ -28,7 +28,7 @@ export class LoginsListComponent {
       collections: ['Utilities', 'Social Media', "Utilities", 'Games', 'Streaming'],
     },
     {
-      id: 1,
+      id: 31,
       username: 'insecureee',
       email: 'insecured@gmail.com',
       password: '123456',
@@ -37,7 +37,7 @@ export class LoginsListComponent {
       collections: ['Utilities'],
     },
     {
-      id: 1,
+      id: 4,
       username: 'insecureee',
       email: 'insecured@gmail.com',
       password: '123456',
@@ -46,7 +46,7 @@ export class LoginsListComponent {
       collections: ['Utilities'],
     },
     {
-      id: 1,
+      id: 5,
       username: 'insecureee',
       email: 'insecured@gmail.com',
       password: '123456',
@@ -55,7 +55,7 @@ export class LoginsListComponent {
       collections: ['Utilities'],
     },
     {
-      id: 1,
+      id: 6,
       username: 'insecureee',
       email: 'insecured@gmail.com',
       password: '123456',

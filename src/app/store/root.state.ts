@@ -1,5 +1,5 @@
 export interface Login {
-  id?: number;
+  id: number;
   username: string;
   email: string;
   password: string;
@@ -12,7 +12,6 @@ export interface Login {
 export interface RootState {
   login?: Login;
   loginLoading?: boolean;
-  detailsOpen?: boolean;
 }
 
 export const initialState: RootState = {};

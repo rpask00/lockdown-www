@@ -1,106 +1,108 @@
 <section class="auth-container">
-  <form [formGroup]="loginForm" *ngIf="showLogin;else registerFormRef"
-        class="d-flex flex-column justify-content-center mt-5 p-3 login-form">
-    <img class="login-user pb-5" src="/assets/login-user.png">
-    <mat-form-field class="pb-3" appearance="outline">
-      <mat-label>Username (email)</mat-label>
-      <input matInput formControlName="login">
-      <mat-error *ngIf="loginForm.controls['login'].hasError('required')">
-        Please enter your login or email
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="" appearance="outline">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password">
-      <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-        Please enter your password
-      </mat-error>
-    </mat-form-field>
-
-    <section class="w-100 d-flex justify-content-between pb-4">
-      <button mat-button (click)="showLogin= false">Sign up</button>
-      <button mat-button>Forgot password?</button>
-    </section>
-
-    <button [disabled]="loginForm.invalid" color="primary" class="w-100" clickPreventDefault (click)="login()"
-            mat-raised-button>Login
-    </button>
-  </form>
-
-  <ng-template #registerFormRef>
-
-    <form [formGroup]="registerForm"
-          class="register-form d-flex flex-column justify-content-center mt-5 p-3 login-form">
-      <h1>Register account</h1>
-      <mat-form-field appearance="outline" class="m-2">
-        <mat-label>Login</mat-label>
-        <input matInput formControlName="login">
-        <mat-error *ngIf="registerForm.controls['login'].hasError('required')">
-          Please enter your login
-        </mat-error>
-        <mat-error *ngIf="registerForm.controls['login'].hasError('minlength')">
-          Login is too short
+  <loader-transparent-container [loading]="userLoading$">
+    <form [formGroup]="loginForm" *ngIf="showLogin;else registerFormRef"
+          class="d-flex flex-column justify-content-center mt-5 p-3 login-form">
+      <img class="login-user pb-5" src="/assets/login-user.png">
+      <mat-form-field class="pb-3" appearance="outline">
+        <mat-label>Username (email)</mat-label>
+        <input matInput formControlName="username">
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+          Please enter your login or email
         </mat-error>
       </mat-form-field>
 
-      <section>
-        <mat-form-field appearance="outline" class="m-2">
-          <mat-label>First name</mat-label>
-          <input matInput formControlName="firstName">
-          <mat-error *ngIf="registerForm.controls['firstName'].hasError('required')">
-            Please enter your first name
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="m-2">
-          <mat-label>Last name</mat-label>
-          <input matInput formControlName="lastName">
-          <mat-error *ngIf="registerForm.controls['lastName'].hasError('required')">
-            Please enter your last name
-          </mat-error>
-        </mat-form-field>
-      </section>
-
-      <mat-form-field appearance="outline" class="m-2">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email">
-        <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
-          Please enter valid email
-        </mat-error>
-        <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
-          Please enter your email
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="m-2">
+      <mat-form-field class="" appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password">
-        <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
           Please enter your password
         </mat-error>
-        <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
-          Password is too short
-        </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="m-2">
-        <mat-label>Repeat Password</mat-label>
-        <input matInput formControlName="repeatedPassword" type="password">
-        <mat-error *ngIf="registerForm.controls['repeatedPassword'].hasError('passwordsNotMatch')">
-          Passwords do not match
-        </mat-error>
-      </mat-form-field>
-
-      <section class="w-100 d-flex justify-content-end pb-2 mx-2">
-        <button mat-button (click)="showLogin= true">Already have account?</button>
+      <section class="w-100 d-flex justify-content-between pb-4">
+        <button mat-button (click)="showLogin= false">Sign up</button>
+        <button mat-button>Forgot password?</button>
       </section>
 
-      <button
-        [disabled]="registerForm.invalid"
-        color="primary" class="m-2" mat-raised-button (click)="showLogin= true">Sign up
+      <button [disabled]="loginForm.invalid" color="primary" class="w-100" clickPreventDefault (click)="login()"
+              mat-raised-button>Login
       </button>
     </form>
-  </ng-template>
-</section>
 
+    <ng-template #registerFormRef>
+
+
+      <form [formGroup]="registerForm"
+            class="register-form d-flex flex-column justify-content-center mt-5 p-3 login-form">
+        <h1>Register account</h1>
+        <mat-form-field appearance="outline" class="m-2">
+          <mat-label>Login</mat-label>
+          <input matInput formControlName="username">
+          <mat-error *ngIf="registerForm.controls['username'].hasError('required')">
+            Please enter your login
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['username'].hasError('minlength')">
+            Login is too short
+          </mat-error>
+        </mat-form-field>
+
+        <section>
+          <mat-form-field appearance="outline" class="m-2">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="first_name">
+            <mat-error *ngIf="registerForm.controls['first_name'].hasError('required')">
+              Please enter your first name
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="m-2">
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="last_name">
+            <mat-error *ngIf="registerForm.controls['last_name'].hasError('required')">
+              Please enter your last name
+            </mat-error>
+          </mat-form-field>
+        </section>
+
+        <mat-form-field appearance="outline" class="m-2">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+            Please enter valid email
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+            Please enter your email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="m-2">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+            Please enter your password
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
+            Password is too short
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="m-2">
+          <mat-label>Repeat Password</mat-label>
+          <input matInput formControlName="repeatedPassword" type="password">
+          <mat-error *ngIf="registerForm.controls['repeatedPassword'].hasError('passwordsNotMatch')">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+
+        <section class="w-100 d-flex justify-content-end pb-2 mx-2">
+          <button mat-button (click)="showLogin= true">Already have account?</button>
+        </section>
+
+        <button
+          color="primary" class="m-2" mat-raised-button (click)="register()">
+          Sign up
+        </button>
+      </form>
+    </ng-template>
+  </loader-transparent-container>
+</section>

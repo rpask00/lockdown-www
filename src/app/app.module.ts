@@ -28,6 +28,7 @@ import {AuthComponent} from './auth/auth.component';
 import {HomeComponent} from './home/home.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 export interface AppState {
   root: RootState
@@ -48,6 +49,7 @@ export interface AppState {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     StoreModule.forRoot({root: rootReducer}, {}),

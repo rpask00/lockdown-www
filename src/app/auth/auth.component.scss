@@ -26,9 +26,29 @@
       width: 20%;
     }
 
-    h1{
+    h1 {
       color: white;
       text-align: center;
+    }
+  }
+}
+
+.registrationSuccessInfo {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+
+  h1 {
+    color: whitesmoke;
+  }
+
+  p {
+    color: #787676;
+
+    span {
+      color: var(--mat-badge-background-color);
+      cursor: pointer;
     }
   }
 }

@@ -5,7 +5,8 @@ import {AppState} from "../app.module";
 import {Store} from "@ngrx/store";
 import {userLoading} from "../store/root.selectors";
 import {userQuery} from "../store/root.actions";
-import {User, UserDto} from "../store/root.state";
+import {UserDto} from "../store/root.state";
+import {startWith} from "rxjs";
 
 @Component({
   selector: 'lockdown-auth',
@@ -48,6 +49,7 @@ export class AuthComponent {
 
   registrationSuccess$ = this._actions$.pipe(
     ofType(userQuery.registerSuccess),
+    startWith(null)
   );
 
   register() {

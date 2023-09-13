@@ -30,9 +30,8 @@
     </form>
 
     <ng-template #registerFormRef>
-
-
       <form [formGroup]="registerForm"
+            *ngIf="!(registrationSuccess$ | async);else registrationSuccessInfo"
             class="register-form d-flex flex-column justify-content-center mt-5 p-3 login-form">
         <h1>Register account</h1>
         <mat-form-field appearance="outline" class="m-2">
@@ -103,6 +102,14 @@
           Sign up
         </button>
       </form>
+
+      <ng-template #registrationSuccessInfo>
+        <div class="registrationSuccessInfo">
+          <h1>Registration Successful</h1>
+          <p>Your registration was successful. You can now <span  (click)="showLogin=true">login</span> to your account.</p>
+        </div>
+      </ng-template>
+
     </ng-template>
   </loader-transparent-container>
 </section>

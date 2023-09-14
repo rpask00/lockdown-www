@@ -20,6 +20,11 @@ export const userQuery = {
   register: createAction('[Root Component] register user', props<{ user: UserDto }>()),
   registerSuccess: createAction('[Root Component] register user success', props<{ user: User }>()),
   registerFailed: createAction('[Root Component] register user failed'),
+
+  logout: createAction('[Root Component] logout user'),
+  logoutSuccess: createAction('[Root Component] logout user success'),
+  logoutFailed: createAction('[Root Component] logout user failed'),
+
 }
 
 export const closeDetails = createAction('[Root Component] close details');

@@ -29,6 +29,7 @@ import {HomeComponent} from './home/home.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 export interface AppState {
   root: RootState
@@ -46,27 +47,28 @@ export interface AppState {
     AuthComponent,
     HomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    StoreModule.forRoot({root: rootReducer}, {}),
-    EffectsModule.forRoot([RootEffects]),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-    }),
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        StoreModule.forRoot({root: rootReducer}, {}),
+        EffectsModule.forRoot([RootEffects]),
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right',
+        }),
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatChipsModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

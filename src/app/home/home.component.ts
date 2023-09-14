@@ -5,6 +5,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {map} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../app.module";
+import {userQuery} from "../store/root.actions";
 
 @Component({
   selector: 'lockdown-home',
@@ -24,5 +25,9 @@ export class HomeComponent {
     private _activatedRoute: ActivatedRoute,
     private _router: Router
   ) {
+  }
+
+  logout() {
+    this._store.dispatch(userQuery.logout());
   }
 }

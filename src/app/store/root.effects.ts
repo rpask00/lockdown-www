@@ -44,8 +44,24 @@ export class RootEffects {
     switchMap(({username, password}) =>
       this._resourceService.login({username, password}).pipe(
         map((user) => {
-          this._router.navigate(['/'])
+          this._router.navigate(['/logins'])
           return userQuery.loginSuccess({user});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(userQuery.loginFailed());
+          }
+        )
+      ),
+    )))
+
+  logout$ = createEffect(() => this._actions$.pipe(
+    ofType(userQuery.logout),
+    switchMap(() =>
+      this._resourceService.logout().pipe(
+        map((user) => {
+          this._router.navigate(['/auth'])
+          return userQuery.logoutSuccess();
         }),
         catchError((error) => {
             this._toastr.error(error.message, 'Error occurred');

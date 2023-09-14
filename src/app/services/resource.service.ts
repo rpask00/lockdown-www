@@ -22,7 +22,12 @@ export class ResourceService {
   registerUser(user: UserDto): Observable<User> {
     return this.http.post<User>(`${this.resource}/user`, user);
   }
+
   login(credentials: LoginRequest): Observable<User> {
     return this.http.post<User>(`${this.resource}/login`, credentials);
+  }
+
+  logout() {
+    return this.http.get(`${this.resource}/logout`);
   }
 }

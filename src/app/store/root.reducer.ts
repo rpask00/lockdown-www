@@ -14,6 +14,7 @@ export const rootReducer = createReducer(
     userLoading: false
   })),
   on(userQuery.loadSuccess, userQuery.loginSuccess, (state, {user}) => ({...state, user})),
+  on(userQuery.logoutSuccess, (state) => ({...state, user: undefined})),
 
   on(closeDetails, (state) => ({
     ...state,

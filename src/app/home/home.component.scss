@@ -19,6 +19,10 @@ mat-list-item span {
 }
 
 
+button.logout {
+  margin-left: auto;
+}
+
 @media (max-width: 600px) {
   .app-container {
     height: calc(100% - var(--mat-toolbar-mobile-height));

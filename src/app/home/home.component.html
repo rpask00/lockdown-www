@@ -3,6 +3,10 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span style="cursor: pointer" routerLink="todo/all">Lockdown</span>
+
+  <button mat-icon-button class="logout" matTooltip="Logout" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-drawer-container class="app-container" autosize>

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {User, UserDto} from "../store/root.state";
+import {LoginRequest, User, UserDto} from "../store/root.state";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -21,5 +21,8 @@ export class ResourceService {
 
   registerUser(user: UserDto): Observable<User> {
     return this.http.post<User>(`${this.resource}/user`, user);
+  }
+  login(credentials: LoginRequest): Observable<User> {
+    return this.http.post<User>(`${this.resource}/login`, credentials);
   }
 }

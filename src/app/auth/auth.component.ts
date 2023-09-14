@@ -5,7 +5,7 @@ import {AppState} from "../app.module";
 import {Store} from "@ngrx/store";
 import {userLoading} from "../store/root.selectors";
 import {userQuery} from "../store/root.actions";
-import {UserDto} from "../store/root.state";
+import {LoginRequest, UserDto} from "../store/root.state";
 import {startWith} from "rxjs";
 
 @Component({
@@ -19,10 +19,9 @@ export class AuthComponent {
     private _actions$: Actions,
     private _store: Store<AppState>,
   ) {
-    this.registrationSuccess$.subscribe(console.log)
   }
 
-  public showLogin = false;
+  public showLoginPanel = true;
 
   readonly loginForm = this._fb.group({
     username: ['', Validators.required],
@@ -57,7 +56,7 @@ export class AuthComponent {
   }
 
   login() {
-
+    this._store.dispatch(userQuery.login(this.loginForm.value as LoginRequest));
   }
 
 }

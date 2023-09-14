@@ -13,7 +13,7 @@ export const rootReducer = createReducer(
     ...state,
     userLoading: false
   })),
-  on(userQuery.loadSuccess, (state, {user}) => ({...state, user})),
+  on(userQuery.loadSuccess, userQuery.loginSuccess, (state, {user}) => ({...state, user})),
 
   on(closeDetails, (state) => ({
     ...state,

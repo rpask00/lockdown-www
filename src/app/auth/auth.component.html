@@ -1,6 +1,6 @@
 <section class="auth-container">
   <loader-transparent-container [loading]="userLoading$">
-    <form [formGroup]="loginForm" *ngIf="showLogin;else registerFormRef"
+    <form [formGroup]="loginForm" *ngIf="showLoginPanel;else registerFormRef"
           class="d-flex flex-column justify-content-center mt-5 p-3 login-form">
       <img class="login-user pb-5" src="/assets/login-user.png">
       <mat-form-field class="pb-3" appearance="outline">
@@ -20,7 +20,7 @@
       </mat-form-field>
 
       <section class="w-100 d-flex justify-content-between pb-4">
-        <button mat-button (click)="showLogin= false">Sign up</button>
+        <button mat-button (click)="showLoginPanel= false">Sign up</button>
         <button mat-button>Forgot password?</button>
       </section>
 
@@ -94,7 +94,7 @@
         </mat-form-field>
 
         <section class="w-100 d-flex justify-content-end pb-2 mx-2">
-          <button mat-button (click)="showLogin= true">Already have account?</button>
+          <button mat-button (click)="showLoginPanel= true">Already have account?</button>
         </section>
 
         <button
@@ -106,7 +106,7 @@
       <ng-template #registrationSuccessInfo>
         <div class="registrationSuccessInfo">
           <h1>Registration Successful</h1>
-          <p>Your registration was successful. You can now <span  (click)="showLogin=true">login</span> to your account.</p>
+          <p>Your registration was successful. You can now <span  (click)="showLoginPanel=true">login</span> to your account.</p>
         </div>
       </ng-template>
 

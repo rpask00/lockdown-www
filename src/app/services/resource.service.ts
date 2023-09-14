@@ -11,8 +11,12 @@ export class ResourceService {
   readonly resource = environment.apiUrl;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
+  }
+
+  status(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.resource}/status`);
   }
 
   registerUser(user: UserDto): Observable<User> {

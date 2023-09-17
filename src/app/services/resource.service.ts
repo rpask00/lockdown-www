@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest, User, UserDto} from "../store/root.state";
 import {Observable} from "rxjs";
+import {fromPromise} from "rxjs/internal/observable/innerFrom";
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,18 @@ export class ResourceService {
   }
 
   status(): Observable<boolean> {
-    return this.http.get<boolean>(`${this.resource}/status`);
+    return this.http.get<boolean>(`${this.resource}/status`, {withCredentials: true});
   }
 
   registerUser(user: UserDto): Observable<User> {
-    return this.http.post<User>(`${this.resource}/user`, user);
+    return this.http.post<User>(`${this.resource}/user`, user, {withCredentials: true});
   }
 
   login(credentials: LoginRequest): Observable<User> {
-    return this.http.post<User>(`${this.resource}/login`, credentials);
+    return this.http.post<User>(`${this.resource}/login`, credentials, {withCredentials: true});
   }
 
   logout() {
-    return this.http.get(`${this.resource}/logout`);
+    return this.http.get(`${this.resource}/logout`, {withCredentials: true});
   }
 }

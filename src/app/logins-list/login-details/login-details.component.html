@@ -1,3 +1,9 @@
+<!--preventing chrome autofill-->
+<input [style.display]="'none'" name="username" />
+<input [style.display]="'none'" name="email" />
+<input [style.display]="'none'" name="password" type="password" />
+<!---->
+
 <!--<loader-transparent-container [loading]="loading$">-->
 <section class="container d-flex flex-column" [formGroup]="form">
   <mat-form-field appearance="outline" class="my-2">

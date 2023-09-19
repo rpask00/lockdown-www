@@ -1,13 +1,16 @@
 export type IdType = number | string;
 
-export interface Login {
-  id: IdType;
+export interface LoginDto {
   username: string;
   email: string;
   password: string;
-  usedAt: string;
   linked_websites: string[],
   collections: string[],
+}
+
+export interface Login extends LoginDto{
+  used_at: string;
+  id: IdType;
 }
 
 export interface LoginRequest {

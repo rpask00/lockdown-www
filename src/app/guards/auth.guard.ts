@@ -1,7 +1,7 @@
 import {CanActivateFn} from '@angular/router';
 import {Injectable} from "@angular/core";
 import {firstValueFrom} from "rxjs";
-import {ResourceService} from "../services/resource.service";
+import {AuthResource} from "../services/auth.resource.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,13 @@ export class AuthGuard {
   private _authorized: boolean | null = null;
 
   constructor(
-    private _resourceService: ResourceService,
+    private _authResource: AuthResource,
   ) {
   }
 
   private async _checkStatus() {
     if (this._authorized === null) {
-      this._authorized = await firstValueFrom(this._resourceService.status());
+      this._authorized = await firstValueFrom(this._authResource.status());
     }
   }
 

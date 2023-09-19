@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResourceService } from './resource.service';
+import { AuthResource } from './auth-resource.service';
 
 describe('ResourceService', () => {
-  let service: ResourceService;
+  let service: AuthResource;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ResourceService);
+    service = TestBed.inject(AuthResource);
   });
 
   it('should be created', () => {

@@ -3,12 +3,11 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest, User, UserDto} from "../store/root.state";
 import {Observable} from "rxjs";
-import {fromPromise} from "rxjs/internal/observable/innerFrom";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceService {
+export class AuthResource {
   readonly resource = environment.apiUrl;
 
   constructor(

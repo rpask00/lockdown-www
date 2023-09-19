@@ -7,6 +7,7 @@ import {AppState} from "../../app.module";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {LoginDto} from "../../store/root.state";
 
 @Component({
   selector: 'lockdown-login-details',
@@ -18,16 +19,16 @@ export class LoginDetailsComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   readonly loginId = this._activatedRoute.snapshot.params['id']
+  readonly isNew = !this.loginId
   readonly loading$ = this._store.select(selectLoginLoading)
 
   readonly form = this._fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
     email: ['', Validators.required],
-    usedAt: [null],
     note: [''],
-    linked_websites: this._fb.array([]),
-    collections: this._fb.array([]),
+    linked_websites: this._fb.array<string>([]),
+    collections: this._fb.array<string>([]),
   })
 
   get linked_websites() {
@@ -46,7 +47,9 @@ export class LoginDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._store.dispatch(loginQuery.load({id: this.loginId}))
+    if (this.loginId) {
+      this._store.dispatch(loginQuery.load({id: this.loginId}))
+    }
   }
 
   add(event: MatChipInputEvent, array: FormArray): void {
@@ -69,6 +72,11 @@ export class LoginDetailsComponent implements OnInit {
   }
 
   save() {
-
+    const login = this.form.value as LoginDto
+    if (this.isNew) {
+      this._store.dispatch(loginQuery.create({login}))
+    } else {
+      this._store.dispatch(loginQuery.update({id: this.loginId, login}))
+    }
   }
 }

@@ -3,10 +3,11 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {Store} from "@ngrx/store";
 import {ToastrService} from "ngx-toastr";
 import {RootState} from "./root.state";
-import {userQuery} from "./root.actions";
+import {loginQuery, userQuery} from "./root.actions";
 import {catchError, map, of, switchMap} from "rxjs";
-import {ResourceService} from "../services/resource.service";
 import {Router} from "@angular/router";
+import {AuthResource} from "../services/auth.resource.service";
+import {LoginResource} from "../services/login.resource.service";
 
 
 @Injectable({
@@ -18,14 +19,15 @@ export class RootEffects {
     private _store: Store<RootState>,
     private _toastr: ToastrService,
     private _router: Router,
-    private _resourceService: ResourceService,
+    private _authResource: AuthResource,
+    private _loginResource: LoginResource,
   ) {
   }
 
   register$ = createEffect(() => this._actions$.pipe(
     ofType(userQuery.register),
     switchMap(({user}) =>
-      this._resourceService.registerUser(user).pipe(
+      this._authResource.registerUser(user).pipe(
         map((user) => {
           this._toastr.success('User registered successfully', 'Success');
           return userQuery.registerSuccess({user});
@@ -42,7 +44,7 @@ export class RootEffects {
   login$ = createEffect(() => this._actions$.pipe(
     ofType(userQuery.login),
     switchMap(({username, password}) =>
-      this._resourceService.login({username, password}).pipe(
+      this._authResource.login({username, password}).pipe(
         map((user) => {
           this._router.navigate(['/logins'])
           return userQuery.loginSuccess({user});
@@ -58,7 +60,7 @@ export class RootEffects {
   logout$ = createEffect(() => this._actions$.pipe(
     ofType(userQuery.logout),
     switchMap(() =>
-      this._resourceService.logout().pipe(
+      this._authResource.logout().pipe(
         map((user) => {
           this._router.navigate(['/auth'])
           return userQuery.logoutSuccess();
@@ -69,5 +71,22 @@ export class RootEffects {
           }
         )
       ),
+    )))
+
+  createLogin$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.create),
+    switchMap(({login}) => {
+        return this._loginResource.create(login).pipe(
+          map((user) => {
+            this._router.navigateByUrl('/logins')
+            return userQuery.logoutSuccess();
+          }),
+          catchError((error) => {
+              this._toastr.error(error.message, 'Error occurred');
+              return of(userQuery.loginFailed());
+            }
+          )
+        )
+      }
     )))
 }

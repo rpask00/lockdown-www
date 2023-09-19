@@ -25,7 +25,7 @@
   <section class="actions d-flex align-items-center">
     <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">...</button>
     <mat-menu #menu="matMenu">
-      <a [routerLink]="['', {outlets:{details: ['login',login.id]}}]" mat-menu-item>
+      <a [routerLink]="['', {outlets:{details: ['login','edit',login.id]}}]" mat-menu-item>
         <mat-icon>edit</mat-icon>
         See details</a>
       <div mat-menu-item>

@@ -19,7 +19,12 @@ const routes: Routes = [
         component: LoginsListComponent,
       },
       {
-        path: 'login/:id',
+        path: 'login/edit/:id',
+        component: LoginDetailsComponent,
+        outlet: 'details',
+      },
+      {
+        path: 'login/new',
         component: LoginDetailsComponent,
         outlet: 'details',
       },

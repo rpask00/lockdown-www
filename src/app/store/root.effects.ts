@@ -103,4 +103,18 @@ export class RootEffects {
       )
 
     })))
+
+  loadLogin$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.load),
+    switchMap(({id}) => {
+      return this._loginResource.load(id).pipe(
+        map((login) => loginQuery.loadSuccess({login})),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(loginQuery.loadFailed());
+          }
+        )
+      )
+
+    })))
 }

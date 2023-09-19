@@ -12,6 +12,10 @@ export const rootReducer = createReducer(
   on(loginQuery.loadAllSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
   on(loginQuery.loadAllSuccess, (state, {logins}) => ({...state, logins})),
 
+  on(loginQuery.load, (state) => ({...state, loginsLoading: true})),
+  on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
+  on(loginQuery.loadSuccess, (state, {login}) => ({...state, login})),
+
   on(loginQuery.createSuccess, (state, {login}) => ({...state, logins: [...(state.logins || []), login]})),
 
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),

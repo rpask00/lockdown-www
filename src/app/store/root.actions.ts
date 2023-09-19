@@ -7,7 +7,7 @@ export const loginQuery = {
   loadAllFailed: createAction('[Root Component] load all login failed'),
 
   load: createAction('[Root Component] load login', props<{ id: IdType }>()),
-  loadSuccess: createAction('[Root Component] load login success', props<{ login: Login }>()),
+  loadSuccess: createAction('[Root Component] load login success', props<{ login?: Login  }>()),
   loadFailed: createAction('[Root Component] load login failed'),
 
   create: createAction('[Root Component] create login', props<{ login: LoginDto }>()),

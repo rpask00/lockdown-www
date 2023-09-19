@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Login, LoginDto} from "../store/root.state";
+import {IdType, Login, LoginDto} from "../store/root.state";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -16,11 +16,15 @@ export class LoginResource {
   }
 
   create(login: LoginDto): Observable<Login> {
-    return this.http.post<Login>(`${this.resource}/logins`, login, {withCredentials: true});
+    return this.http.post<Login>(`${this.resource}/logins`, login);
   }
 
 
   loadAll(): Observable<Login[]> {
-    return this.http.get<Login[]>(`${this.resource}/logins`, {withCredentials: true});
+    return this.http.get<Login[]>(`${this.resource}/logins`);
+  }
+
+  load(id: IdType): Observable<Login> {
+    return this.http.get<Login>(`${this.resource}/login/` + id);
   }
 }

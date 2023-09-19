@@ -8,4 +8,7 @@ export const selectLogin = createSelector(selectRoot, (state: RootState) => stat
 export const selectLoginLoading = createSelector(selectRoot, (state: RootState) => state.loginLoading || false);
 export const userLoading = createSelector(selectRoot, (state: RootState) => state.userLoading || false);
 
+export const selectLogins = createSelector(selectRoot, (state: RootState) => state.logins || []);
+export const selectLoginsLoading = createSelector(selectRoot, (state: RootState) => state?.loginsLoading || false);
+
 

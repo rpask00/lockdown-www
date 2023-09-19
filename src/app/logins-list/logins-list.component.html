@@ -1,10 +1,14 @@
-<mat-selection-list #loginsRef>
-  <section class="login-wrapper mt-2 pt-2" *ngFor="let login of logins">
-    <mat-list-option>
-      <lockdown-login [login]="login"></lockdown-login>
-    </mat-list-option>
+<loader-transparent-container [loading]="loginsLoading$">
+  <mat-selection-list #loginsRef>
+    <section class="login-wrapper mt-2 pt-2" *ngFor="let login of logins$ | async">
+      <mat-list-option>
+        <lockdown-login [login]="login"></lockdown-login>
+      </mat-list-option>
+    </section>
+  </mat-selection-list>
+  <section class="w-100 d-flex justify-content-center">
+    <a [routerLink]="['', {outlets:{details: ['login','new']}}]" mat-raised-button color="primary" class="mt-5 mx-auto">+
+      Add login</a>
   </section>
-</mat-selection-list>
-<section class="w-100 d-flex justify-content-center">
-  <a [routerLink]="['', {outlets:{details: ['login','new']}}]" mat-raised-button color="primary" class="mt-5 mx-auto">+ Add login</a>
-</section>
+
+</loader-transparent-container>

@@ -77,16 +77,30 @@ export class RootEffects {
     ofType(loginQuery.create),
     switchMap(({login}) => {
         return this._loginResource.create(login).pipe(
-          map((user) => {
+          map((login) => {
             this._router.navigateByUrl('/logins')
-            return userQuery.logoutSuccess();
+            return loginQuery.createSuccess({login});
           }),
           catchError((error) => {
               this._toastr.error(error.message, 'Error occurred');
-              return of(userQuery.loginFailed());
+              return of(loginQuery.createFailed());
             }
           )
         )
       }
     )))
+
+  loadAllLogins$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.loadAll),
+    switchMap(() => {
+      return this._loginResource.loadAll().pipe(
+        map((logins) => loginQuery.loadAllSuccess({logins})),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(loginQuery.loadAllFailed());
+          }
+        )
+      )
+
+    })))
 }

@@ -33,7 +33,9 @@ export interface UserDto extends Omit<User, 'id'> {
 
 export interface RootState {
   login?: Login;
+  logins?: Login[];
   loginLoading?: boolean;
+  loginsLoading?: boolean;
   userLoading?: boolean;
   user?: User;
 }

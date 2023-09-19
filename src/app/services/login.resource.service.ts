@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Login, LoginDto, LoginRequest, User, UserDto} from "../store/root.state";
+import {Login, LoginDto} from "../store/root.state";
 import {Observable} from "rxjs";
-import {fromPromise} from "rxjs/internal/observable/innerFrom";
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +20,7 @@ export class LoginResource {
   }
 
 
+  loadAll(): Observable<Login[]> {
+    return this.http.get<Login[]>(`${this.resource}/logins`, {withCredentials: true});
+  }
 }

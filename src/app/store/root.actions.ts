@@ -2,6 +2,10 @@ import {createAction, props} from '@ngrx/store';
 import {IdType, Login, LoginDto, LoginRequest, User, UserDto} from "./root.state";
 
 export const loginQuery = {
+  loadAll: createAction('[Root Component] load all login'),
+  loadAllSuccess: createAction('[Root Component] load all login success', props<{ logins: Login[] }>()),
+  loadAllFailed: createAction('[Root Component] load all login failed'),
+
   load: createAction('[Root Component] load login', props<{ id: IdType }>()),
   loadSuccess: createAction('[Root Component] load login success', props<{ login: Login }>()),
   loadFailed: createAction('[Root Component] load login failed'),

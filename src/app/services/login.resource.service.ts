@@ -19,7 +19,6 @@ export class LoginResource {
     return this.http.post<Login>(`${this.resource}/logins`, login);
   }
 
-
   loadAll(): Observable<Login[]> {
     return this.http.get<Login[]>(`${this.resource}/logins`);
   }
@@ -30,5 +29,9 @@ export class LoginResource {
 
   delete(id: IdType): Observable<void> {
     return this.http.delete<void>(`${this.resource}/login/` + id);
+  }
+
+  update(id:IdType, login: LoginDto): Observable<Login> {
+    return this.http.put<Login>(`${this.resource}/login/` + id, login);
   }
 }

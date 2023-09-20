@@ -22,10 +22,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
-
         if (error && error.status === 401) {
+          this._router.navigateByUrl('/auth')
           this._toastr.error('Session expired', 'Unauthorized')
-          this._router.navigate(['/auth'])
         }
 
         return throwError(() => error);

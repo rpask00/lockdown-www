@@ -131,4 +131,20 @@ export class RootEffects {
         )
       )
     })))
+
+  updateLogin$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.update),
+    switchMap(({id, login}) => {
+      return this._loginResource.update(id, login).pipe(
+        map((login) => {
+          this._router.navigateByUrl('/logins')
+          return loginQuery.updateSuccess({login});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(loginQuery.updateFailed());
+          }
+        )
+      )
+    })))
 }

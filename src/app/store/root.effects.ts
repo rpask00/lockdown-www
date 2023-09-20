@@ -115,6 +115,20 @@ export class RootEffects {
           }
         )
       )
-
+    })))
+  deleteLogin$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.delete),
+    switchMap(({id}) => {
+      return this._loginResource.delete(id).pipe(
+        map(() => {
+          this._router.navigateByUrl('/logins')
+          return loginQuery.deleteSuccess({id});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(loginQuery.deleteFailed());
+          }
+        )
+      )
     })))
 }

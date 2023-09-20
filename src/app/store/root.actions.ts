@@ -17,6 +17,10 @@ export const loginQuery = {
   update: createAction('[Root Component] update login', props<{ id: IdType, login: LoginDto }>()),
   updateSuccess: createAction('[Root Component] update login success', props<{ login: Login }>()),
   updateFailed: createAction('[Root Component] update login failed'),
+
+  delete: createAction('[Root Component] delete login', props<{ id: IdType }>()),
+  deleteSuccess: createAction('[Root Component] delete login success', props<{ id: IdType }>()),
+  deleteFailed: createAction('[Root Component] delete login failed'),
 }
 
 export const userQuery = {

@@ -16,6 +16,10 @@ export const rootReducer = createReducer(
   on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
   on(loginQuery.loadSuccess, (state, {login}) => ({...state, login})),
 
+  on(loginQuery.deleteSuccess, (state, {id}) => ({
+    ...state,
+    logins: (state.logins || []).filter(login => login.id == id)
+  })),
   on(loginQuery.createSuccess, (state, {login}) => ({...state, logins: [...(state.logins || []), login]})),
 
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),

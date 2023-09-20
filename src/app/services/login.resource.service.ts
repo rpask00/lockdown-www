@@ -27,4 +27,8 @@ export class LoginResource {
   load(id: IdType): Observable<Login> {
     return this.http.get<Login>(`${this.resource}/login/` + id);
   }
+
+  delete(id: IdType): Observable<void> {
+    return this.http.delete<void>(`${this.resource}/login/` + id);
+  }
 }

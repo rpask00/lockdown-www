@@ -98,4 +98,8 @@ export class LoginDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._store.dispatch(loginQuery.loadSuccess({}))
   }
+
+  delete() {
+    this._store.dispatch(loginQuery.delete({id: this.loginId}))
+  }
 }

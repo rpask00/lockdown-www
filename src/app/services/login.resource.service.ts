@@ -24,14 +24,14 @@ export class LoginResource {
   }
 
   load(id: IdType): Observable<Login> {
-    return this.http.get<Login>(`${this.resource}/login/` + id);
+    return this.http.get<Login>(`${this.resource}/logins/` + id);
   }
 
   delete(id: IdType): Observable<void> {
-    return this.http.delete<void>(`${this.resource}/login/` + id);
+    return this.http.delete<void>(`${this.resource}/logins/` + id);
   }
 
   update(id:IdType, login: LoginDto): Observable<Login> {
-    return this.http.put<Login>(`${this.resource}/login/` + id, login);
+    return this.http.put<Login>(`${this.resource}/logins/` + id, login);
   }
 }

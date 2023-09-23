@@ -1,9 +1,9 @@
 <section class="d-flex login-container" *ngIf="login">
   <section class="image">
-    <img src="https://d2erpoudwvue5y.cloudfront.net/_46x30/allegro_pl@2x.png" alt="">
+    <img #itemIcon  [ngSrc]="target_website + '/favicon.ico'" alt="icon" width="36" height="39"  (error)="loadingFaviconError()">
   </section>
   <section class="item-name">
-    <h2 class="item-name__title m-0">{{ linked_websites }}</h2>
+    <h2 class="item-name__title m-0">{{ linked_website }}</h2>
     <p class="item-name__login m-0"> {{login.email || login.username}}</p>
   </section>
   <section class="used_at d-flex align-items-center"><p
@@ -28,15 +28,15 @@
       <a [routerLink]="['', {outlets:{details: ['login','edit',login.id]}}]" mat-menu-item>
         <mat-icon>edit</mat-icon>
         See details</a>
-      <div mat-menu-item>
+      <div mat-menu-item (click)="goToWebsite()">
         <mat-icon>redo</mat-icon>
         Go to website
       </div>
-      <div mat-menu-item>
+      <div mat-menu-item [cdkCopyToClipboard]="login.password">
         <mat-icon>file_copy</mat-icon>
         Copy password
       </div>
-      <div mat-menu-item>
+      <div mat-menu-item [cdkCopyToClipboard]="login.email">
         <mat-icon>perm_identity</mat-icon>
         Copy email
       </div>

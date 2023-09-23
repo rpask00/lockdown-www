@@ -32,6 +32,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {ClipboardModule} from "@angular/cdk/clipboard";
+import {NgOptimizedImage} from "@angular/common";
 
 export interface AppState {
   root: RootState
@@ -69,7 +71,9 @@ export interface AppState {
     MatProgressSpinnerModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ClipboardModule,
+    NgOptimizedImage
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

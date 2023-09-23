@@ -21,6 +21,10 @@ export const loginQuery = {
   delete: createAction('[Root Component] delete login', props<{ id: IdType }>()),
   deleteSuccess: createAction('[Root Component] delete login success', props<{ id: IdType }>()),
   deleteFailed: createAction('[Root Component] delete login failed'),
+
+  deleteMass: createAction('[Root Component] delete mass login', props<{ ids: IdType[] }>()),
+  deleteMassSuccess: createAction('[Root Component] delete mass login success', props<{ ids: Set<IdType> }>()),
+  deleteMassFailed: createAction('[Root Component] delete mass login failed'),
 }
 
 export const userQuery = {

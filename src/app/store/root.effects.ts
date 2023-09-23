@@ -131,6 +131,21 @@ export class RootEffects {
         )
       )
     })))
+  deleteMassLogin$ = createEffect(() => this._actions$.pipe(
+    ofType(loginQuery.deleteMass),
+    switchMap(({ids}) => {
+      return this._loginResource.deleteMass(ids).pipe(
+        map((ids) => {
+          this._router.navigateByUrl('/logins')
+          return loginQuery.deleteMassSuccess({ids: new Set(ids)});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(loginQuery.deleteMassFailed());
+          }
+        )
+      )
+    })))
 
   updateLogin$ = createEffect(() => this._actions$.pipe(
     ofType(loginQuery.update),

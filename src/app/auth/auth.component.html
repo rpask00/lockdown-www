@@ -1,7 +1,7 @@
 <section class="auth-container">
   <loader-transparent-container [loading]="userLoading$">
     <form [formGroup]="loginForm" *ngIf="showLoginPanel;else registerFormRef"
-          class="d-flex flex-column justify-content-center mt-5 p-3 login-form">
+          class="d-flex flex-column justify-content-center py-5 p-3 login-form">
       <img class="login-user pb-5" src="/assets/login-user.png">
       <mat-form-field class="pb-3" appearance="outline">
         <mat-label>Username (email)</mat-label>
@@ -32,7 +32,7 @@
     <ng-template #registerFormRef>
       <form [formGroup]="registerForm"
             *ngIf="!(registrationSuccess$ | async);else registrationSuccessInfo"
-            class="register-form d-flex flex-column justify-content-center mt-5 p-3 login-form">
+            class="register-form d-flex flex-column justify-content-center py-5 p-3 login-form">
         <h1>Register account</h1>
         <mat-form-field appearance="outline" class="m-2">
           <mat-label>Login</mat-label>
@@ -106,7 +106,8 @@
       <ng-template #registrationSuccessInfo>
         <div class="registrationSuccessInfo">
           <h1>Registration Successful</h1>
-          <p>Your registration was successful. You can now <span  (click)="showLoginPanel=true">login</span> to your account.</p>
+          <p>Your registration was successful. You can now <span (click)="showLoginPanel=true">login</span> to your
+            account.</p>
         </div>
       </ng-template>
 

@@ -28,5 +28,6 @@ export class LoginsListComponent implements OnInit {
 
   removeSelected() {
     this._store.dispatch(loginQuery.deleteMass({ids: this.selectedLogins.value || []}))
+    this.selectedLogins.setValue([])
   }
 }

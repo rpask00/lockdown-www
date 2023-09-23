@@ -31,6 +31,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 export interface AppState {
   root: RootState
@@ -48,33 +49,35 @@ export interface AppState {
     AuthComponent,
     HomeComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        StoreModule.forRoot({root: rootReducer}, {}),
-        EffectsModule.forRoot([RootEffects]),
-        ToastrModule.forRoot({
-            positionClass: 'toast-bottom-right',
-        }),
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatChipsModule,
-        MatMenuModule,
-        MatProgressSpinnerModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatTooltipModule
-    ],
-  providers: [   {
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    StoreModule.forRoot({root: rootReducer}, {}),
+    EffectsModule.forRoot([RootEffects]),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatTooltipModule
+  ],
+  providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },],
+  },
+    {provide: MAT_DATE_LOCALE, useValue: "pl"}
+  ],
   bootstrap: [AppComponent],
 
 })

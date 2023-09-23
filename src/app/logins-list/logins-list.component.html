@@ -7,10 +7,11 @@
      </button>
   </div>
 
-  <mat-selection-list [formControl]="selectedLogins">
+  <mat-selection-list [formControl]="selectedLogins" *ngIf="(logins$ | async)?.length; else emptyMessage">
     <section class="login-wrapper mt-2 pt-2" *ngFor="let login of logins$ | async">
       <mat-list-option [value]="login.id">
         <lockdown-login [login]="login"></lockdown-login>
+
       </mat-list-option>
     </section>
   </mat-selection-list>
@@ -18,5 +19,9 @@
     <a [routerLink]="['', {outlets:{details: ['login','new']}}]" mat-raised-button color="primary" class="mt-5 mx-auto">+
       Add login</a>
   </section>
-
+  <ng-template #emptyMessage>
+    <section class="w-100 d-flex justify-content-center">
+      <p class="mt-5 mx-auto">No logins found</p>
+    </section>
+  </ng-template>
 </loader-transparent-container>

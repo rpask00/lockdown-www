@@ -12,6 +12,9 @@
     <mat-error *ngIf="form.controls['username'].hasError('required')">
       User name is <strong>required</strong>
     </mat-error>
+    <button *ngIf="form.value.username" matSuffix [cdkCopyToClipboard]="form.value.username" mat-icon-button>
+      <mat-icon>file_copy</mat-icon>
+    </button>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="my-2">
@@ -20,7 +23,10 @@
     <mat-error *ngIf="form.controls['password'].hasError('required')">
       Password is <strong>required</strong>
     </mat-error>
-    <button matSuffix (click)="showPassword = !showPassword" mat-icon-button><mat-icon>remove_red_eye</mat-icon></button>
+    <button *ngIf="form.value.password" matSuffix (click)="showPassword = !showPassword" mat-icon-button><mat-icon>remove_red_eye</mat-icon></button>
+    <button *ngIf="form.value.password" matSuffix [cdkCopyToClipboard]="form.value.password" mat-icon-button>
+      <mat-icon>file_copy</mat-icon>
+    </button>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="my-2">
@@ -29,6 +35,9 @@
     <mat-error *ngIf="form.controls['email'].hasError('required')">
       Email is <strong>required</strong>
     </mat-error>
+    <button *ngIf="form.value.email" matSuffix [cdkCopyToClipboard]="form.value.email" mat-icon-button>
+      <mat-icon>file_copy</mat-icon>
+    </button>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="my-2">

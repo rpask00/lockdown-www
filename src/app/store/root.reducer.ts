@@ -18,7 +18,7 @@ export const rootReducer = createReducer(
 
   on(loginQuery.deleteSuccess, (state, {id}) => ({
     ...state,
-    logins: (state.logins || []).filter(login => login.id == id)
+    logins: (state.logins || []).filter(login => login.id != id)
   })),
   on(loginQuery.deleteMassSuccess, (state, {ids}) => ({
     ...state,

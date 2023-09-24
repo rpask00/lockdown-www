@@ -34,6 +34,9 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {ClipboardModule} from "@angular/cdk/clipboard";
 import {NgOptimizedImage} from "@angular/common";
+import { PaymentsListComponent } from './payments-list/payments-list.component';
+import { PaymentDetailsComponent } from './payments-list/payment-details/payment-details.component';
+import {PaymentComponent} from "./payments-list/payment/payment.component";
 
 export interface AppState {
   root: RootState
@@ -50,6 +53,9 @@ export interface AppState {
     LoaderTransparentComponent,
     AuthComponent,
     HomeComponent,
+    PaymentsListComponent,
+    PaymentComponent,
+    PaymentDetailsComponent,
   ],
   imports: [
     BrowserModule,

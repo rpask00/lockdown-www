@@ -8,8 +8,33 @@ export interface LoginDto {
   collections: string[],
 }
 
-export interface Login extends LoginDto{
+export interface Login extends LoginDto {
   used_at: string;
+  id: IdType;
+}
+
+export enum CardColor {
+  RED = 'red',
+  BLUE = 'blue',
+  GREEN = 'green',
+  YELLOW = 'yellow',
+  PURPLE = 'purple',
+  ORANGE = 'orange',
+  BLACK = 'black',
+  WHITE = 'white',
+}
+
+export interface PaymentDto {
+  card_holder: string;
+  card_number: string;
+  security_code: string;
+  expiration: string,
+  name: string,
+  color: CardColor,
+  notes: string,
+}
+
+export interface Payment extends PaymentDto {
   id: IdType;
 }
 
@@ -36,6 +61,12 @@ export interface RootState {
   logins?: Login[];
   loginLoading?: boolean;
   loginsLoading?: boolean;
+
+  payment?: Payment;
+  payments?: Payment[];
+  paymentLoading?: boolean;
+  paymentsLoading?: boolean;
+
   userLoading?: boolean;
   user?: User;
 }

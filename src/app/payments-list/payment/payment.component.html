@@ -1,1 +1,14 @@
-<p>payment works!</p>
+<section
+  [style.background-color]="payment?.color"
+  class="payment-container m-3 px-3 pt-5"
+  [routerLink]="['', {outlets:{details: ['payment','edit', payment?.id]}}]">
+  <section class="d-flex pt-3 payment-number">
+    <p class="mx-1">****</p>
+    <p class="mx-1">****</p>
+    <p class="mx-1">****</p>
+    <p>{{payment?.card_number?.slice(-4)}}</p>
+  </section>
+  <p><b>Expiration date</b> {{payment?.expiration_month}}
+    /{{payment?.expiration_year?.toString()?.slice(-2)}} {{payment?.name}}</p>
+  <p>{{payment?.card_holder}}</p>
+</section>

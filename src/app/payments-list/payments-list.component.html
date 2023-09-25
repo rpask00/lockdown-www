@@ -1,1 +1,8 @@
-<p>payments-list works!</p>
+<section class="d-flex flex-wrap" >
+  <lockdown-payment [payment]="payment" *ngFor="let payment of payments"></lockdown-payment>
+
+  <section class="payment-placeholder m-3" [routerLink]="['', {outlets:{details: ['payment','new']}}]">
+    <mat-icon>add</mat-icon>
+  </section>
+
+</section>

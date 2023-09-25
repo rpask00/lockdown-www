@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {CardColor, Payment} from "../store/root.state";
 
 @Component({
   selector: 'lockdown-payments-list',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class PaymentsListComponent {
 
+  payments: Payment[] = [
+    {
+      id: '1',
+      card_holder: 'John Doe',
+      card_number: '1234 5678 9012 3456',
+      security_code: '123',
+      expiration_month: 1,
+      expiration_year: 2021,
+      name: 'mBank',
+      color: CardColor.GREEN,
+      notes: 'This is a note',
+    }
+  ]
 }

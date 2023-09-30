@@ -1,1 +1,74 @@
-<p>payment-details works!</p>
+<!--preventing chrome autofill-->
+<input [style.display]="'none'" name="username"/>
+<input [style.display]="'none'" name="email"/>
+<input [style.display]="'none'" name="password" type="password"/>
+<!---->
+
+<loader-transparent-container [loading]="loading$">
+  <section class="container d-flex flex-column" [formGroup]="form">
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Card holder name</mat-label>
+      <input matInput formControlName="card_holder">
+      <mat-error *ngIf="form.controls['card_holder'].hasError('required')">
+        Card holder name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Card Number</mat-label>
+      <input matInput formControlName="card_number">
+      <mat-error *ngIf="form.controls['card_number'].hasError('required')">
+        Card number is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>CVV</mat-label>
+      <input max="999" min="100" type="number" matInput formControlName="security_code">
+    </mat-form-field>
+
+    <section class="d-flex">
+      <mat-form-field [style.max-width]="'130px'" appearance="outline" class="my-2 mr-3">
+        <mat-label>Month</mat-label>
+        <input max="12" min="1" type="number" matInput formControlName="expiration_month">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="my-2">
+        <mat-label>Year</mat-label>
+        <input max="999" min="100" type="number" matInput formControlName="expiration_year">
+      </mat-form-field>
+
+    </section>
+
+
+    <mat-form-field appearance="outline" class="mb-2 mt-4">
+      <mat-label>Item Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Color</mat-label>
+      <mat-select>
+        <mat-option [style.color]="color" *ngFor="let color of card_colors" [value]="color">{{color.toUpperCase()}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Note</mat-label>
+      <textarea matInput formControlName="note"></textarea>
+    </mat-form-field>
+
+    <section class="d-flex justify-content-between">
+      <a class="mr-auto" mat-button [routerLink]="['', {outlets:{details: null}}]">Close</a>
+
+      <section class="d-flex">
+        <button class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
+        <button [disabled]="form.invalid" color="primary" mat-raised-button (click)="save()">Save</button>
+      </section>
+    </section>
+  </section>
+</loader-transparent-container>
+
+

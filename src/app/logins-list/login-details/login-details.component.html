@@ -92,7 +92,7 @@
     <a class="mr-auto" mat-button [routerLink]="['', {outlets:{details: null}}]">Close</a>
 
     <section class="d-flex">
-      <button class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
+      <button *ngIf="!isNew" class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
       <button [disabled]="form.invalid" color="primary" mat-raised-button (click)="save()">Save</button>
     </section>
   </section>

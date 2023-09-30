@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span style="cursor: pointer" routerLink="todo/all">Lockdown</span>
+  <span style="cursor: pointer" routerLink="logins">Lockdown</span>
 
   <button mat-icon-button class="logout" matTooltip="Logout" (click)="logout()">
     <mat-icon>logout</mat-icon>
@@ -31,7 +31,7 @@
   <mat-drawer #itemDetails
               [mode]="'over'"
               [disableClose]="true"
-              [opened]="detailsOpen$ | async"
+              [opened]="(detailsOpen$ | async ) || false"
               class="app-sidenav"
               position="end"
   >

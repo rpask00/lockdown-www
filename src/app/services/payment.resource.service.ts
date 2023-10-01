@@ -28,19 +28,10 @@ export class PaymentResource {
   }
 
   delete(id: IdType): Observable<number[]> {
-    return this.deleteMass([id]);
+    return this.http.delete<number[]>(`${this.resource}/payments/` + id);
   }
 
   update(id:IdType, login: PaymentDto): Observable<Payment> {
     return this.http.put<Payment>(`${this.resource}/payments/` + id, login);
-  }
-
-  deleteMass(ids: IdType[]):Observable<number[]> {
-    const formData = new FormData();
-    ids.forEach(id => formData.append('ids', id.toString()));
-
-    return this.http.delete<number[]>(`${this.resource}/payments`, {
-      body: formData,
-    });
   }
 }

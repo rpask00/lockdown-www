@@ -14,7 +14,7 @@ import {paymentQuery} from "../../store/root.actions";
   templateUrl: './payment-details.component.html',
   styleUrls: ['./payment-details.component.scss']
 })
-export class PaymentDetailsComponent implements OnInit{
+export class PaymentDetailsComponent implements OnInit {
   readonly card_colors: CardColor[] = Object.values(CardColor)
   readonly paymentId = this._activatedRoute.snapshot.params['id']
 
@@ -50,7 +50,7 @@ export class PaymentDetailsComponent implements OnInit{
   }
 
   delete() {
-
+    this._store.dispatch(paymentQuery.delete({id: this.paymentId}))
   }
 
   save() {

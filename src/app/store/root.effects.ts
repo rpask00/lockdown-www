@@ -211,4 +211,20 @@ export class RootEffects {
       )
     })))
 
+  deletePayment$ = createEffect(() => this._actions$.pipe(
+    ofType(paymentQuery.delete),
+    switchMap(({id}) => {
+      return this._paymentResource.delete(id).pipe(
+        map(() => {
+          this._router.navigateByUrl('/payments')
+          return paymentQuery.deleteSuccess({id});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(paymentQuery.deleteFailed());
+          }
+        )
+      )
+    })))
+
 }

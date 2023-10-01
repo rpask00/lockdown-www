@@ -42,6 +42,11 @@ export const rootReducer = createReducer(
   on(paymentQuery.loadSuccess, paymentQuery.loadFailed, (state) => ({...state, paymentLoading: false})),
   on(paymentQuery.loadSuccess, (state, {payment}) => ({...state, payment})),
 
+  on(paymentQuery.deleteSuccess, (state, {id}) => ({
+    ...state,
+    payments: (state.payments || []).filter(login => login.id != id)
+  })),
+
   // USERS
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),
   on(userQuery.loginSuccess, userQuery.loginFailed, userQuery.registerSuccess, userQuery.registerFailed, userQuery.loadSuccess, userQuery.loadFailed, (state) => ({

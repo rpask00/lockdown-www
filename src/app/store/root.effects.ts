@@ -227,4 +227,23 @@ export class RootEffects {
       )
     })))
 
+
+
+  updatePayment$ = createEffect(() => this._actions$.pipe(
+    ofType(paymentQuery.update),
+    switchMap(({id, payment}) => {
+      return this._paymentResource.update(id, payment).pipe(
+        map((payment) => {
+          this._router.navigateByUrl('/payments')
+          return paymentQuery.updateSuccess({payment});
+        }),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(paymentQuery.updateFailed());
+          }
+        )
+      )
+    })))
+
+
 }

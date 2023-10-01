@@ -46,6 +46,10 @@ export const rootReducer = createReducer(
     ...state,
     payments: (state.payments || []).filter(login => login.id != id)
   })),
+  on(paymentQuery.updateSuccess, (state, {payment}) => ({
+    ...state,
+    payments: (state.payments || []).map(l => l.id == payment.id ? payment : l)
+  })),
 
   // USERS
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),

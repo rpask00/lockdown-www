@@ -21,7 +21,7 @@ export enum CardColor {
   PURPLE = 'purple',
   ORANGE = 'orange',
   BLACK = 'black',
-  WHITE = 'white',
+  DARKCYAN = 'darkcyan',
 }
 
 export interface PaymentDto {

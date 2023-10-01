@@ -197,4 +197,18 @@ export class RootEffects {
       )
     })))
 
+
+  loadPayment$ = createEffect(() => this._actions$.pipe(
+    ofType(paymentQuery.load),
+    switchMap(({id}) => {
+      return this._paymentResource.load(id).pipe(
+        map((payment) => paymentQuery.loadSuccess({payment})),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(paymentQuery.loadFailed());
+          }
+        )
+      )
+    })))
+
 }

@@ -13,7 +13,7 @@ export const rootReducer = createReducer(
   on(loginQuery.loadAllSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
   on(loginQuery.loadAllSuccess, (state, {logins}) => ({...state, logins})),
 
-  on(loginQuery.load, (state) => ({...state, loginsLoading: true})),
+  on(loginQuery.load, (state) => ({...state, loginsLoading: true, login:undefined})),
   on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
   on(loginQuery.loadSuccess, (state, {login}) => ({...state, login})),
 
@@ -38,6 +38,9 @@ export const rootReducer = createReducer(
   on(paymentQuery.loadAllSuccess, paymentQuery.loadFailed, (state) => ({...state, paymentsLoading: false})),
   on(paymentQuery.loadAllSuccess, (state, {payments}) => ({...state, payments})),
 
+  on(paymentQuery.load, (state) => ({...state, paymentLoading: true, payment: undefined})),
+  on(paymentQuery.loadSuccess, paymentQuery.loadFailed, (state) => ({...state, paymentLoading: false})),
+  on(paymentQuery.loadSuccess, (state, {payment}) => ({...state, payment})),
 
   // USERS
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),

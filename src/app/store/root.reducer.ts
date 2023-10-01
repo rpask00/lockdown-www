@@ -1,10 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState} from "./root.state";
-import {closeDetails, loginQuery, userQuery} from "./root.actions";
+import {closeDetails, loginQuery, paymentQuery, userQuery} from "./root.actions";
 
 
 export const rootReducer = createReducer(
   initialState,
+  // LOGINS
   on(loginQuery.load, (state) => ({...state, loginLoading: true})),
   on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginLoading: false})),
 
@@ -29,6 +30,10 @@ export const rootReducer = createReducer(
     ...state,
     logins: (state.logins || []).map(l => l.id == login.id ? login : l)
   })),
+
+  // PAYMENTS
+  on(paymentQuery.createSuccess, (state, {payment}) => ({...state, payments: [...(state.payments || []), payment]})),
+
 
   on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),
   on(userQuery.loginSuccess, userQuery.loginFailed, userQuery.registerSuccess, userQuery.registerFailed, userQuery.loadSuccess, userQuery.loadFailed, (state) => ({

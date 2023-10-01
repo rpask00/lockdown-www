@@ -27,12 +27,12 @@ export enum CardColor {
 export interface PaymentDto {
   card_holder: string;
   card_number: string;
-  security_code: string;
+  security_code: number;
   expiration_month: number,
   expiration_year: number,
   name: string,
   color: CardColor,
-  notes: string,
+  note: string,
 }
 
 export interface Payment extends PaymentDto {

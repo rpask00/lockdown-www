@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {IdType, Login, LoginDto, LoginRequest, User, UserDto} from "./root.state";
+import {IdType, Login, LoginDto, LoginRequest, Payment, PaymentDto, User, UserDto} from "./root.state";
 
 export const loginQuery = {
   loadAll: createAction('[Root Component] load all login'),
@@ -25,6 +25,32 @@ export const loginQuery = {
   deleteMass: createAction('[Root Component] delete mass login', props<{ ids: IdType[] }>()),
   deleteMassSuccess: createAction('[Root Component] delete mass login success', props<{ ids: Set<IdType> }>()),
   deleteMassFailed: createAction('[Root Component] delete mass login failed'),
+}
+
+export const paymentQuery = {
+  loadAll: createAction('[Root Component] load all payment'),
+  loadAllSuccess: createAction('[Root Component] load all payment success', props<{ logins: Payment[] }>()),
+  loadAllFailed: createAction('[Root Component] load all payment failed'),
+
+  load: createAction('[Root Component] load payment', props<{ id: IdType }>()),
+  loadSuccess: createAction('[Root Component] load payment success', props<{ payment?: Payment  }>()),
+  loadFailed: createAction('[Root Component] load payment failed'),
+
+  create: createAction('[Root Component] create payment', props<{ payment: PaymentDto }>()),
+  createSuccess: createAction('[Root Component] create payment success', props<{ payment: Payment }>()),
+  createFailed: createAction('[Root Component] create payment failed'),
+
+  update: createAction('[Root Component] update payment', props<{ id: IdType, payment: PaymentDto }>()),
+  updateSuccess: createAction('[Root Component] update payment success', props<{ payment: Payment }>()),
+  updateFailed: createAction('[Root Component] update payment failed'),
+
+  delete: createAction('[Root Component] delete payment', props<{ id: IdType }>()),
+  deleteSuccess: createAction('[Root Component] delete payment success', props<{ id: IdType }>()),
+  deleteFailed: createAction('[Root Component] delete payment failed'),
+
+  deleteMass: createAction('[Root Component] delete mass payment', props<{ ids: IdType[] }>()),
+  deleteMassSuccess: createAction('[Root Component] delete mass payment success', props<{ ids: Set<IdType> }>()),
+  deleteMassFailed: createAction('[Root Component] delete mass payment failed'),
 }
 
 export const userQuery = {

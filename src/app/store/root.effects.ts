@@ -3,11 +3,12 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {Store} from "@ngrx/store";
 import {ToastrService} from "ngx-toastr";
 import {RootState} from "./root.state";
-import {loginQuery, userQuery} from "./root.actions";
+import {loginQuery, paymentQuery, userQuery} from "./root.actions";
 import {catchError, map, of, switchMap} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthResource} from "../services/auth.resource.service";
 import {LoginResource} from "../services/login.resource.service";
+import {PaymentResource} from "../services/payment.resource.service";
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class RootEffects {
     private _router: Router,
     private _authResource: AuthResource,
     private _loginResource: LoginResource,
+    private _paymentResource: PaymentResource,
   ) {
   }
 
@@ -162,4 +164,23 @@ export class RootEffects {
         )
       )
     })))
+
+
+
+  createPayment$ = createEffect(() => this._actions$.pipe(
+    ofType(paymentQuery.create),
+    switchMap(({payment}) => {
+        return this._paymentResource.create(payment).pipe(
+          map((payment) => {
+            this._router.navigateByUrl('/payments')
+            return paymentQuery.createSuccess({payment});
+          }),
+          catchError((error) => {
+              this._toastr.error(error.message, 'Error occurred');
+              return of(paymentQuery.createFailed());
+            }
+          )
+        )
+      }
+    )))
 }

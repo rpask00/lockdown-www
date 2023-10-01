@@ -1,8 +1,18 @@
-<section class="d-flex flex-wrap" >
-  <lockdown-payment [payment]="payment" *ngFor="let payment of payments"></lockdown-payment>
+<loader-transparent-container [loading]="paymentsLoading$">
+  <section *ngIf="payments$ | async as payments" class="payments-wrapper">
+    <section class="d-flex flex-wrap" *ngIf="payments.length; else emptyMessage">
+      <lockdown-payment [payment]="payment" *ngFor="let payment of payments"></lockdown-payment>
 
-  <section class="payment-placeholder m-3" [routerLink]="['', {outlets:{details: ['payment','new']}}]">
-    <mat-icon>add</mat-icon>
+      <section class="payment-placeholder m-3" [routerLink]="['', {outlets:{details: ['payment','new']}}]">
+        <mat-icon>add</mat-icon>
+      </section>
+
+    </section>
+
+    <ng-template #emptyMessage>
+      <section class="w-100 d-flex justify-content-center">
+        <p class="mt-5 mx-auto">No logins found</p>
+      </section>
+    </ng-template>
   </section>
-
-</section>
+</loader-transparent-container>

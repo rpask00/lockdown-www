@@ -166,7 +166,6 @@ export class RootEffects {
     })))
 
 
-
   createPayment$ = createEffect(() => this._actions$.pipe(
     ofType(paymentQuery.create),
     switchMap(({payment}) => {
@@ -183,4 +182,19 @@ export class RootEffects {
         )
       }
     )))
+
+
+  loadAllPayments$ = createEffect(() => this._actions$.pipe(
+    ofType(paymentQuery.loadAll),
+    switchMap(() => {
+      return this._paymentResource.loadAll().pipe(
+        map((payments) => paymentQuery.loadAllSuccess({payments})),
+        catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(paymentQuery.loadAllFailed());
+          }
+        )
+      )
+    })))
+
 }

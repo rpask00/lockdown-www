@@ -1,12 +1,23 @@
-import {Component} from '@angular/core';
-import {CardColor, Payment} from "../store/root.state";
+import {Component, OnInit} from '@angular/core';
+import {CardColor, Payment, RootState} from "../store/root.state";
+import {Store} from "@ngrx/store";
+import {paymentQuery} from "../store/root.actions";
+import {selectPaymentLoading, selectPayments} from "../store/root.selectors";
+import {AppState} from "../app.module";
 
 @Component({
   selector: 'lockdown-payments-list',
   templateUrl: './payments-list.component.html',
   styleUrls: ['./payments-list.component.scss']
 })
-export class PaymentsListComponent {
+export class PaymentsListComponent implements OnInit {
+  readonly payments$ = this._store.select(selectPayments)
+  readonly paymentsLoading$ = this._store.select(selectPaymentLoading);
+
+  constructor(
+    private _store: Store<AppState>
+  ) {
+  }
 
   payments: Payment[] = [
     {
@@ -21,4 +32,8 @@ export class PaymentsListComponent {
       note: 'This is a note',
     }
   ]
+
+  ngOnInit(): void {
+    this._store.dispatch(paymentQuery.loadAll())
+  }
 }

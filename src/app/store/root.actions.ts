@@ -29,7 +29,7 @@ export const loginQuery = {
 
 export const paymentQuery = {
   loadAll: createAction('[Root Component] load all payment'),
-  loadAllSuccess: createAction('[Root Component] load all payment success', props<{ logins: Payment[] }>()),
+  loadAllSuccess: createAction('[Root Component] load all payment success', props<{ payments: Payment[] }>()),
   loadAllFailed: createAction('[Root Component] load all payment failed'),
 
   load: createAction('[Root Component] load payment', props<{ id: IdType }>()),

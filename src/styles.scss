@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@import "styles/spacings";
+@import 'styles/spacings';
 
-html, body {
+html,
+body {
   height: 100%;
   --bs-body-bg: #555555;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   height: 100%;
   background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e) !important;
 }
-

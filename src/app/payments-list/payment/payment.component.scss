@@ -1,15 +1,14 @@
-.payment-container{
+.payment-container {
   width: 270px;
   height: 180px;
   background-color: red;
   border-radius: 8px;
   cursor: pointer;
-  opacity: .8;
-  transition: .2s;
-
+  opacity: 0.8;
+  transition: 0.2s;
 }
 
-.payment-container:hover{
+.payment-container:hover {
   opacity: 1;
 }
 

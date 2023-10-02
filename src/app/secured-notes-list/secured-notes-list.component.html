@@ -1,0 +1,63 @@
+<loader-transparent-container [loading]="securedNotesLoading$">
+  <section *ngIf="securedNotes$ | async as securedNotes" class="secured-notes-wrapper">
+    <section *ngIf="securedNotes.length; else emptyMessage">
+      <table class="w-100">
+        <thead>
+        <tr>
+          <th></th>
+          <th colspan="10">NOTE NAME</th>
+          <th class="text-end">Attachments</th>
+          <th class="text-end">Created at</th>
+          <th class="text-end">Updated at</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let note of securedNotes">
+          <td>
+            <div class="note-icon ml-3" [style.background-color]="note.color">
+              <mat-icon>note</mat-icon>
+            </div>
+          </td>
+          <td colspan="10">{{ note.title }}</td>
+          <td class="text-end">
+            <mat-chip [matTooltip]="note.attachments | attachments">{{ note.attachments.length }}</mat-chip>
+          </td>
+          <td>
+            <table-date [date]="note.created_at"></table-date>
+          </td>
+          <td>
+            <table-date [date]="note.updated_at"></table-date>
+          </td>
+          <td class="text-end">
+            <a
+              mat-icon-button
+              class="mr-4"
+              [routerLink]="['', {outlets: {details: ['secured-note', 'edit', note.id]}}]"
+            >
+              <mat-icon>search</mat-icon>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="w-100 d-flex justify-content-center">
+      <a
+        [routerLink]="['', {outlets: {details: ['secured-note', 'new']}}]"
+        mat-raised-button
+        color="primary"
+        class="mt-5 mx-auto"
+      >+ Add secured note
+      </a>
+    </section>
+
+    <ng-template #emptyMessage>
+      <section class="w-100 d-flex justify-content-center">
+        <p class="mt-5 mx-auto">No logins found</p>
+      </section>
+    </ng-template>
+  </section>
+</loader-transparent-container>

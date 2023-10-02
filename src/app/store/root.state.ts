@@ -4,13 +4,32 @@ export interface LoginDto {
   username: string;
   email: string;
   password: string;
-  linked_websites: string[],
-  collections: string[],
+  linked_websites: string[];
+  collections: string[];
 }
 
 export interface Login extends LoginDto {
   used_at: string;
   id: IdType;
+}
+
+export interface Attachment {
+  id: IdType;
+  name: string;
+  size: number;
+}
+
+export interface SecuredNoteDto {
+  note: string;
+  title: string;
+  color: CardColor;
+}
+
+export interface SecuredNote extends SecuredNoteDto {
+  id: IdType;
+  attachments: Attachment[];
+  created_at: string;
+  updated_at: string;
 }
 
 export enum CardColor {
@@ -21,18 +40,18 @@ export enum CardColor {
   PURPLE = 'purple',
   ORANGE = 'orange',
   BLACK = 'black',
-  DARKCYAN = 'darkcyan',
+  DARKCYAN = 'darkcyan'
 }
 
 export interface PaymentDto {
   card_holder: string;
   card_number: string;
   security_code: number;
-  expiration_month: number,
-  expiration_year: number,
-  name: string,
-  color: CardColor,
-  note: string,
+  expiration_month: number;
+  expiration_year: number;
+  name: string;
+  color: CardColor;
+  note: string;
 }
 
 export interface Payment extends PaymentDto {
@@ -55,7 +74,6 @@ export interface User {
 export interface UserDto extends Omit<User, 'id'> {
   password: string;
 }
-
 
 export interface RootState {
   login?: Login;

@@ -1,8 +1,8 @@
-<div class="loader-container {{extraClass}}" [class.loading]="isLoading">
-    <ng-container>
-        <div class="loader {{extraClass}}" *ngIf="isLoading">
-            <mat-spinner [diameter]="size"></mat-spinner>
-        </div>
-        <ng-content></ng-content>
-    </ng-container>
+<div class="loader-container {{ extraClass }}" [class.loading]="isLoading">
+  <ng-container>
+    <div class="loader {{ extraClass }}" *ngIf="isLoading">
+      <mat-spinner [diameter]="size"></mat-spinner>
+    </div>
+    <ng-content></ng-content>
+  </ng-container>
 </div>

@@ -1,63 +1,108 @@
 import {createReducer, on} from '@ngrx/store';
-import {initialState} from "./root.state";
-import {closeDetails, loginQuery, paymentQuery, userQuery} from "./root.actions";
-
+import {initialState} from './root.state';
+import {closeDetails, loginQuery, paymentQuery, userQuery} from './root.actions';
 
 export const rootReducer = createReducer(
   initialState,
   // LOGINS
   on(loginQuery.load, (state) => ({...state, loginLoading: true})),
-  on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginLoading: false})),
+  on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({
+    ...state,
+    loginLoading: false
+  })),
 
   on(loginQuery.loadAll, (state) => ({...state, loginsLoading: true})),
-  on(loginQuery.loadAllSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
+  on(loginQuery.loadAllSuccess, loginQuery.loadFailed, (state) => ({
+    ...state,
+    loginsLoading: false
+  })),
   on(loginQuery.loadAllSuccess, (state, {logins}) => ({...state, logins})),
 
-  on(loginQuery.load, (state) => ({...state, loginsLoading: true, login:undefined})),
-  on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({...state, loginsLoading: false})),
+  on(loginQuery.load, (state) => ({
+    ...state,
+    loginsLoading: true,
+    login: undefined
+  })),
+  on(loginQuery.loadSuccess, loginQuery.loadFailed, (state) => ({
+    ...state,
+    loginsLoading: false
+  })),
   on(loginQuery.loadSuccess, (state, {login}) => ({...state, login})),
 
   on(loginQuery.deleteSuccess, (state, {id}) => ({
     ...state,
-    logins: (state.logins || []).filter(login => login.id != id)
+    logins: (state.logins || []).filter((login) => login.id != id)
   })),
   on(loginQuery.deleteMassSuccess, (state, {ids}) => ({
     ...state,
-    logins: (state.logins || []).filter(login => !ids.has(login.id))
+    logins: (state.logins || []).filter((login) => !ids.has(login.id))
   })),
-  on(loginQuery.createSuccess, (state, {login}) => ({...state, logins: [...(state.logins || []), login]})),
+  on(loginQuery.createSuccess, (state, {login}) => ({
+    ...state,
+    logins: [...(state.logins || []), login]
+  })),
   on(loginQuery.updateSuccess, (state, {login}) => ({
     ...state,
-    logins: (state.logins || []).map(l => l.id == login.id ? login : l)
+    logins: (state.logins || []).map((l) => (l.id == login.id ? login : l))
   })),
 
   // PAYMENTS
-  on(paymentQuery.createSuccess, (state, {payment}) => ({...state, payments: [...(state.payments || []), payment]})),
+  on(paymentQuery.createSuccess, (state, {payment}) => ({
+    ...state,
+    payments: [...(state.payments || []), payment]
+  })),
 
   on(paymentQuery.loadAll, (state) => ({...state, paymentsLoading: true})),
-  on(paymentQuery.loadAllSuccess, paymentQuery.loadFailed, (state) => ({...state, paymentsLoading: false})),
-  on(paymentQuery.loadAllSuccess, (state, {payments}) => ({...state, payments})),
+  on(paymentQuery.loadAllSuccess, paymentQuery.loadFailed, (state) => ({
+    ...state,
+    paymentsLoading: false
+  })),
+  on(paymentQuery.loadAllSuccess, (state, {payments}) => ({
+    ...state,
+    payments
+  })),
 
-  on(paymentQuery.load, (state) => ({...state, paymentLoading: true, payment: undefined})),
-  on(paymentQuery.loadSuccess, paymentQuery.loadFailed, (state) => ({...state, paymentLoading: false})),
+  on(paymentQuery.load, (state) => ({
+    ...state,
+    paymentLoading: true,
+    payment: undefined
+  })),
+  on(paymentQuery.loadSuccess, paymentQuery.loadFailed, (state) => ({
+    ...state,
+    paymentLoading: false
+  })),
   on(paymentQuery.loadSuccess, (state, {payment}) => ({...state, payment})),
 
   on(paymentQuery.deleteSuccess, (state, {id}) => ({
     ...state,
-    payments: (state.payments || []).filter(login => login.id != id)
+    payments: (state.payments || []).filter((login) => login.id != id)
   })),
   on(paymentQuery.updateSuccess, (state, {payment}) => ({
     ...state,
-    payments: (state.payments || []).map(l => l.id == payment.id ? payment : l)
+    payments: (state.payments || []).map((l) => (l.id == payment.id ? payment : l))
   })),
 
   // USERS
-  on(userQuery.register, userQuery.login, userQuery.load, (state) => ({...state, userLoading: true})),
-  on(userQuery.loginSuccess, userQuery.loginFailed, userQuery.registerSuccess, userQuery.registerFailed, userQuery.loadSuccess, userQuery.loadFailed, (state) => ({
+  on(userQuery.register, userQuery.login, userQuery.load, (state) => ({
     ...state,
-    userLoading: false
+    userLoading: true
   })),
-  on(userQuery.loadSuccess, userQuery.loginSuccess, (state, {user}) => ({...state, user})),
+  on(
+    userQuery.loginSuccess,
+    userQuery.loginFailed,
+    userQuery.registerSuccess,
+    userQuery.registerFailed,
+    userQuery.loadSuccess,
+    userQuery.loadFailed,
+    (state) => ({
+      ...state,
+      userLoading: false
+    })
+  ),
+  on(userQuery.loadSuccess, userQuery.loginSuccess, (state, {user}) => ({
+    ...state,
+    user
+  })),
   on(userQuery.logoutSuccess, (state) => ({...state, user: undefined})),
 
   on(closeDetails, (state) => ({

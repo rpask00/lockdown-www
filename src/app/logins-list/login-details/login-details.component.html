@@ -1,102 +1,106 @@
 <!--preventing chrome autofill-->
-<input [style.display]="'none'" name="username" />
-<input [style.display]="'none'" name="email" />
-<input [style.display]="'none'" name="password" type="password" />
+<input [style.display]="'none'" name="username"/>
+<input [style.display]="'none'" name="email"/>
+<input [style.display]="'none'" name="password" type="password"/>
 <!---->
 
 <loader-transparent-container [loading]="loading$">
-<section class="container d-flex flex-column" [formGroup]="form">
-  <mat-form-field appearance="outline" class="my-2">
-    <mat-label>User name</mat-label>
-    <input matInput formControlName="username">
-    <mat-error *ngIf="form.controls['username'].hasError('required')">
-      User name is <strong>required</strong>
-    </mat-error>
-    <button *ngIf="form.value.username" matSuffix [cdkCopyToClipboard]="form.value.username" mat-icon-button>
-      <mat-icon>file_copy</mat-icon>
-    </button>
-  </mat-form-field>
+  <section class="container d-flex flex-column" [formGroup]="form">
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>User name</mat-label>
+      <input matInput formControlName="username"/>
+      <mat-error *ngIf="form.controls['username'].hasError('required')">
+        User name is <strong>required</strong>
+      </mat-error>
+      <button *ngIf="form.value.username" matSuffix [cdkCopyToClipboard]="form.value.username" mat-icon-button>
+        <mat-icon>file_copy</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="my-2">
-    <mat-label>Password</mat-label>
-    <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'">
-    <mat-error *ngIf="form.controls['password'].hasError('required')">
-      Password is <strong>required</strong>
-    </mat-error>
-    <button *ngIf="form.value.password" matSuffix (click)="showPassword = !showPassword" mat-icon-button><mat-icon>remove_red_eye</mat-icon></button>
-    <button *ngIf="form.value.password" matSuffix [cdkCopyToClipboard]="form.value.password" mat-icon-button>
-      <mat-icon>file_copy</mat-icon>
-    </button>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'"/>
+      <mat-error *ngIf="form.controls['password'].hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <button *ngIf="form.value.password" matSuffix (click)="showPassword = !showPassword" mat-icon-button>
+        <mat-icon>remove_red_eye</mat-icon>
+      </button>
+      <button *ngIf="form.value.password" matSuffix [cdkCopyToClipboard]="form.value.password" mat-icon-button>
+        <mat-icon>file_copy</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="my-2">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email">
-    <mat-error *ngIf="form.controls['email'].hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-    <button *ngIf="form.value.email" matSuffix [cdkCopyToClipboard]="form.value.email" mat-icon-button>
-      <mat-icon>file_copy</mat-icon>
-    </button>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email"/>
+      <mat-error *ngIf="form.controls['email'].hasError('required')"> Email is <strong>required</strong></mat-error>
+      <button *ngIf="form.value.email" matSuffix [cdkCopyToClipboard]="form.value.email" mat-icon-button>
+        <mat-icon>file_copy</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="my-2">
-    <mat-label>Note</mat-label>
-    <textarea rows="9" matInput formControlName="note"> </textarea>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Note</mat-label>
+      <textarea rows="9" matInput formControlName="note"> </textarea>
+    </mat-form-field>
 
-  <mat-form-field class="example-chip-list" appearance="outline">
-    <mat-label>Linked websites</mat-label>
-    <mat-chip-grid #linkedWebsitesRef aria-label="Enter linked websites">
-      <mat-chip-row *ngFor="let linked_website of linked_websites.value"
-                    (removed)="linked_websites.value.splice(linked_websites.value.indexOf(linked_website), 1)"
-                    [editable]="true"
-                    (edited)="edit(linked_website, $event, linked_websites)"
-                    [aria-description]="'press enter to edit ' + linked_website">
-        {{linked_website}}
-        <button matChipRemove [attr.aria-label]="'remove ' + linked_website">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-      <input placeholder="New website..."
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-label>Linked websites</mat-label>
+      <mat-chip-grid #linkedWebsitesRef aria-label="Enter linked websites">
+        <mat-chip-row
+          *ngFor="let linked_website of linked_websites.value"
+          (removed)="linked_websites.value.splice(linked_websites.value.indexOf(linked_website), 1)"
+          [editable]="true"
+          (edited)="edit(linked_website, $event, linked_websites)"
+          [aria-description]="'press enter to edit ' + linked_website"
+        >
+          {{ linked_website }}
+          <button matChipRemove [attr.aria-label]="'remove ' + linked_website">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input
+          placeholder="New website..."
+          [matChipInputFor]="linkedWebsitesRef"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event, linked_websites)"
+        />
+      </mat-chip-grid>
+    </mat-form-field>
 
-             [matChipInputFor]="linkedWebsitesRef"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="add($event, linked_websites)"/>
-    </mat-chip-grid>
-  </mat-form-field>
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-label>Collections</mat-label>
+      <mat-chip-grid #collectionsRef aria-label="Enter collections">
+        <mat-chip-row
+          *ngFor="let collection of collections.value"
+          (removed)="collections.value.splice(collections.value.indexOf(collection), 1)"
+          [editable]="true"
+          (edited)="edit(collection, $event, collections)"
+          [aria-description]="'press enter to edit ' + collection"
+        >
+          {{ collection }}
+          <button matChipRemove [attr.aria-label]="'remove ' + collection">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input
+          placeholder="New collection..."
+          [matChipInputFor]="collectionsRef"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event, collections)"
+        />
+      </mat-chip-grid>
+    </mat-form-field>
+    <section class="d-flex justify-content-between">
+      <a class="mr-auto" mat-button [routerLink]="['', {outlets: {details: null}}]">Close</a>
 
-
-  <mat-form-field class="example-chip-list" appearance="outline">
-    <mat-label>Collections</mat-label>
-    <mat-chip-grid #collectionsRef aria-label="Enter collections">
-      <mat-chip-row *ngFor="let collection of collections.value"
-                    (removed)="collections.value.splice(collections.value.indexOf(collection), 1)"
-                    [editable]="true"
-                    (edited)="edit(collection, $event, collections)"
-                    [aria-description]="'press enter to edit ' + collection">
-        {{collection}}
-        <button matChipRemove [attr.aria-label]="'remove ' + collection">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-      <input placeholder="New collection..."
-             [matChipInputFor]="collectionsRef"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="add($event, collections)"/>
-    </mat-chip-grid>
-  </mat-form-field>
-  <section class="d-flex justify-content-between">
-    <a class="mr-auto" mat-button [routerLink]="['', {outlets:{details: null}}]">Close</a>
-
-    <section class="d-flex">
-      <button *ngIf="!isNew" class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
-      <button [disabled]="form.invalid" color="primary" mat-raised-button (click)="save()">Save</button>
+      <section class="d-flex">
+        <button *ngIf="!isNew" class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
+        <button [disabled]="form.invalid" color="primary" mat-raised-button (click)="save()">Save</button>
+      </section>
     </section>
   </section>
-</section>
 </loader-transparent-container>
-
-

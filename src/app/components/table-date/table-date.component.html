@@ -1,0 +1,15 @@
+<div ngClass="{{ position }}" class="date-theme" quantThemeClass="date-theme">
+  <p class="date">
+    {{ this.date | date: 'dd.MM.y' }}
+    <ng-container *ngIf="inline">
+      <ng-container *ngTemplateOutlet="time"></ng-container>
+    </ng-container>
+  </p>
+  <p *ngIf="!inline">
+    <ng-container *ngTemplateOutlet="time"></ng-container>
+  </p>
+</div>
+
+<ng-template #time>
+  <span class="time"> {{ this.date | date: 'HH:mm' }}</span>
+</ng-template>

@@ -3,10 +3,9 @@
     <section class="d-flex flex-wrap" *ngIf="payments.length; else emptyMessage">
       <lockdown-payment [payment]="payment" *ngFor="let payment of payments"></lockdown-payment>
 
-      <section class="payment-placeholder m-3" [routerLink]="['', {outlets:{details: ['payment','new']}}]">
+      <section class="payment-placeholder m-3" [routerLink]="['', {outlets: {details: ['payment', 'new']}}]">
         <mat-icon>add</mat-icon>
       </section>
-
     </section>
 
     <ng-template #emptyMessage>

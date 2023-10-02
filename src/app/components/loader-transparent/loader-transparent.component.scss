@@ -1,5 +1,5 @@
 .loader-container {
-    position: relative;
+  position: relative;
 
   &.loading {
     background-color: rgba(255, 255, 255, 0.05);
@@ -7,15 +7,15 @@
 }
 
 .loader {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    position: absolute;
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  z-index: 2;
 }
 
 .loader > mat-spinner {
-    margin: auto 0;
+  margin: auto 0;
 }

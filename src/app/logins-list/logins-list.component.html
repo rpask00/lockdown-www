@@ -1,23 +1,30 @@
 <loader-transparent-container [loading]="loginsLoading$">
-  <div *ngIf="selectedLogins.value?.length" class="d-flex justify-content-between px-3 mx-3 align-items-center removeSelected">
-    <p class="m-0"> {{selectedLogins.value?.length}} logins selected</p>
-     <button color="warn" (click)="removeSelected()" mat-button>Remove selected</button>
-     <button  mat-icon-button (click)="selectedLogins.setValue([])">
-       <mat-icon>close</mat-icon>
-     </button>
+  <div
+    *ngIf="selectedLogins.value?.length"
+    class="d-flex justify-content-between px-3 mx-3 align-items-center removeSelected"
+  >
+    <p class="m-0">{{ selectedLogins.value?.length }} logins selected</p>
+    <button color="warn" (click)="removeSelected()" mat-button>Remove selected</button>
+    <button mat-icon-button (click)="selectedLogins.setValue([])">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 
   <mat-selection-list [formControl]="selectedLogins" *ngIf="(logins$ | async)?.length; else emptyMessage">
     <section class="login-wrapper mt-2 pt-2" *ngFor="let login of logins$ | async">
       <mat-list-option [value]="login.id">
         <lockdown-login [login]="login"></lockdown-login>
-
       </mat-list-option>
     </section>
   </mat-selection-list>
   <section class="w-100 d-flex justify-content-center">
-    <a [routerLink]="['', {outlets:{details: ['login','new']}}]" mat-raised-button color="primary" class="mt-5 mx-auto">+
-      Add login</a>
+    <a
+      [routerLink]="['', {outlets: {details: ['login', 'new']}}]"
+      mat-raised-button
+      color="primary"
+      class="mt-5 mx-auto"
+      >+ Add login</a
+    >
   </section>
   <ng-template #emptyMessage>
     <section class="w-100 d-flex justify-content-center">

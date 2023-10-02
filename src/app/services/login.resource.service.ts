@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {environment} from "../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {IdType, Login, LoginDto} from "../store/root.state";
-import {Observable} from "rxjs";
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {IdType, Login, LoginDto} from '../store/root.state';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,7 @@ import {Observable} from "rxjs";
 export class LoginResource {
   readonly resource = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-  ) {
-  }
+  constructor(private http: HttpClient) {}
 
   create(login: LoginDto): Observable<Login> {
     return this.http.post<Login>(`${this.resource}/logins`, login);
@@ -31,16 +28,16 @@ export class LoginResource {
     return this.deleteMass([id]);
   }
 
-  update(id:IdType, login: LoginDto): Observable<Login> {
+  update(id: IdType, login: LoginDto): Observable<Login> {
     return this.http.put<Login>(`${this.resource}/logins/` + id, login);
   }
 
-  deleteMass(ids: IdType[]):Observable<number[]> {
+  deleteMass(ids: IdType[]): Observable<number[]> {
     const formData = new FormData();
-    ids.forEach(id => formData.append('ids', id.toString()));
+    ids.forEach((id) => formData.append('ids', id.toString()));
 
     return this.http.delete<number[]>(`${this.resource}/logins`, {
-      body: formData,
+      body: formData
     });
   }
 }

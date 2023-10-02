@@ -1,0 +1,32 @@
+.note-icon {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+th {
+  font-size: 20px;
+  height: 70px;
+}
+
+td {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+  height: 60px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+tbody tr {
+  transition: 0.1s ease-in-out;
+}
+
+tbody tr:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+}

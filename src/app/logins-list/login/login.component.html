@@ -1,33 +1,43 @@
 <section class="d-flex login-container" *ngIf="login">
   <section class="image">
-    <img #itemIcon  [ngSrc]="target_website + '/favicon.ico'" alt="icon" width="36" height="39"  (error)="loadingFaviconError()">
+    <img
+      #itemIcon
+      [ngSrc]="target_website + '/favicon.ico'"
+      alt="icon"
+      width="36"
+      height="39"
+      (error)="loadingFaviconError()"
+    />
   </section>
   <section class="item-name">
     <h2 class="item-name__title m-0">{{ linked_website }}</h2>
-    <p class="item-name__login m-0"> {{login.email || login.username}}</p>
+    <p class="item-name__login m-0">{{ login.email || login.username }}</p>
   </section>
-  <section class="used_at d-flex align-items-center"><p
-    class="m-0"> {{(login.used_at + '+0000') | date : 'HH:mm dd.MM.YYYY'}} </p>
+  <section class="used_at d-flex align-items-center">
+    <p class="m-0">{{ login.used_at + '+0000' | date: 'HH:mm dd.MM.YYYY' }}</p>
   </section>
   <section class="collections d-flex align-items-center">
     <mat-chip-listbox *ngIf="login && login.collections">
-      <mat-chip *ngFor="let collection of login.collections.slice(0,3)">{{collection}}</mat-chip>
+      <mat-chip *ngFor="let collection of login.collections.slice(0, 3)">{{ collection }}</mat-chip>
     </mat-chip-listbox>
     <ng-container *ngIf="login && login.collections && login.collections.length > 3">
-      <button clickStopPropagation clickPreventDefault class="mx-3" mat-button
-              [matMenuTriggerFor]="menu">{{login.collections.length - 3 }} more..
+      <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">
+        {{ login.collections.length - 3 }} more..
       </button>
       <mat-menu #menu="matMenu">
-        <div mat-menu-item *ngFor="let collection of login.collections.slice(3)">{{collection}}</div>
+        <div mat-menu-item *ngFor="let collection of login.collections.slice(3)">
+          {{ collection }}
+        </div>
       </mat-menu>
     </ng-container>
   </section>
   <section class="actions d-flex align-items-center">
     <button clickStopPropagation clickPreventDefault class="mx-3" mat-button [matMenuTriggerFor]="menu">...</button>
     <mat-menu #menu="matMenu">
-      <a [routerLink]="['', {outlets:{details: ['login','edit',login.id]}}]" mat-menu-item>
+      <a [routerLink]="['', {outlets: {details: ['login', 'edit', login.id]}}]" mat-menu-item>
         <mat-icon>edit</mat-icon>
-        See details</a>
+        See details</a
+      >
       <div mat-menu-item (click)="goToWebsite()">
         <mat-icon>redo</mat-icon>
         Go to website

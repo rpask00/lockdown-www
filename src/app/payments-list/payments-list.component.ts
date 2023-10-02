@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CardColor, Payment, RootState} from "../store/root.state";
-import {Store} from "@ngrx/store";
-import {paymentQuery} from "../store/root.actions";
-import {selectPaymentLoading, selectPayments} from "../store/root.selectors";
-import {AppState} from "../app.module";
+import {CardColor, Payment} from '../store/root.state';
+import {Store} from '@ngrx/store';
+import {paymentQuery} from '../store/root.actions';
+import {selectPaymentLoading, selectPayments} from '../store/root.selectors';
+import {AppState} from '../app.module';
 
 @Component({
   selector: 'lockdown-payments-list',
@@ -11,13 +11,10 @@ import {AppState} from "../app.module";
   styleUrls: ['./payments-list.component.scss']
 })
 export class PaymentsListComponent implements OnInit {
-  readonly payments$ = this._store.select(selectPayments)
+  readonly payments$ = this._store.select(selectPayments);
   readonly paymentsLoading$ = this._store.select(selectPaymentLoading);
 
-  constructor(
-    private _store: Store<AppState>
-  ) {
-  }
+  constructor(private _store: Store<AppState>) {}
 
   payments: Payment[] = [
     {
@@ -29,11 +26,11 @@ export class PaymentsListComponent implements OnInit {
       expiration_year: 2021,
       name: 'mBank',
       color: CardColor.GREEN,
-      note: 'This is a note',
+      note: 'This is a note'
     }
-  ]
+  ];
 
   ngOnInit(): void {
-    this._store.dispatch(paymentQuery.loadAll())
+    this._store.dispatch(paymentQuery.loadAll());
   }
 }

@@ -28,15 +28,14 @@
   <div class="app-sidenav-content">
     <router-outlet></router-outlet>
   </div>
-  <mat-drawer #itemDetails
-              [mode]="'over'"
-              [disableClose]="true"
-              [opened]="(detailsOpen$ | async ) || false"
-              class="app-sidenav"
-              position="end"
+  <mat-drawer
+    #itemDetails
+    [mode]="'over'"
+    [disableClose]="true"
+    [opened]="(detailsOpen$ | async) || false"
+    class="app-sidenav"
+    position="end"
   >
     <router-outlet name="details"></router-outlet>
   </mat-drawer>
 </mat-drawer-container>
-
-

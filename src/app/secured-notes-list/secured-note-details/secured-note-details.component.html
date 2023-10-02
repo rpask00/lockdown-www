@@ -1,1 +1,34 @@
-<p>secured-note-details works!</p>
+<loader-transparent-container [loading]="loading$">
+  <section class="container d-flex flex-column" [formGroup]="form">
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Note Title</mat-label>
+      <input matInput formControlName="title"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Note</mat-label>
+      <textarea matInput formControlName="note" rows="20"></textarea>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="my-2">
+      <mat-label>Color</mat-label>
+      <mat-select formControlName="color">
+        <mat-option [style.color]="color" *ngFor="let color of card_colors" [value]="color">{{
+          color.toUpperCase()
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <section class="d-flex justify-content-between">
+      <a class="mr-auto" mat-button [routerLink]="['', {outlets: {details: null}}]">Close</a>
+
+      <section class="d-flex">
+        <button *ngIf="!isNew" class="mx-3" color="warn" mat-button (click)="delete()">Delete</button>
+        <button [disabled]="form.invalid" color="primary" mat-raised-button (click)="save()">Save</button>
+      </section>
+    </section>
+
+  </section>
+</loader-transparent-container>

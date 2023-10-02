@@ -20,3 +20,8 @@ export const selectPaymentLoading = createSelector(selectRoot, (state: RootState
 
 export const selectPayments = createSelector(selectRoot, (state: RootState) => state.payments || []);
 export const selectPaymentsLoading = createSelector(selectRoot, (state: RootState) => state?.paymentsLoading || false);
+
+
+// SECURED NOTE
+export const selectSecuredNote = createSelector(selectRoot, (state: RootState) => state.securedNote);
+export const selectSecuredNoteLoading = createSelector(selectRoot, (state: RootState) => state.securedNoteLoading || false);

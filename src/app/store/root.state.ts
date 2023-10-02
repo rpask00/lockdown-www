@@ -86,6 +86,11 @@ export interface RootState {
   paymentLoading?: boolean;
   paymentsLoading?: boolean;
 
+  securedNote?: SecuredNote;
+  securedNotes?: SecuredNote[];
+  securedNoteLoading?: boolean;
+  securedNotesLoading?: boolean;
+
   userLoading?: boolean;
   user?: User;
 }

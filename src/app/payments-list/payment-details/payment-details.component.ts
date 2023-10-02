@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {firstValueFrom, of} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {CardColor, PaymentDto} from "../../store/root.state";
 import {ActivatedRoute} from "@angular/router";
-import {selectLogin, selectLoginLoading, selectPayment, selectPaymentLoading} from "../../store/root.selectors";
+import {selectPayment, selectPaymentLoading} from "../../store/root.selectors";
 import {filter} from "rxjs/operators";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../app.module";
@@ -25,7 +25,7 @@ export class PaymentDetailsComponent implements OnInit {
 
   readonly form = this._fb.group({
     card_holder: ['', Validators.required],
-    card_number: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
+    card_number: ['', [Validators.required]],
     security_code: [0, [Validators.required, Validators.min(100), Validators.max(999)]],
     expiration_month: [0, [Validators.required, Validators.min(1), Validators.max(12)]],
     expiration_year: [0, [Validators.required, Validators.min(2021), Validators.max(2030)]],

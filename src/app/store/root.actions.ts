@@ -1,5 +1,16 @@
 import {createAction, props} from '@ngrx/store';
-import {IdType, Login, LoginDto, LoginRequest, Payment, PaymentDto, User, UserDto} from './root.state';
+import {
+  IdType,
+  Login,
+  LoginDto,
+  LoginRequest,
+  Payment,
+  PaymentDto,
+  SecuredNote,
+  SecuredNoteDto,
+  User,
+  UserDto
+} from './root.state';
 
 export const loginQuery = {
   loadAll: createAction('[Root Component] load all login'),
@@ -52,6 +63,30 @@ export const paymentQuery = {
   deleteMassSuccess: createAction('[Root Component] delete mass payment success', props<{ids: Set<IdType>}>()),
   deleteMassFailed: createAction('[Root Component] delete mass payment failed')
 };
+
+export const securedNotesQuery = {
+  loadAll: createAction('[Root Component] load all secured_notes'),
+  loadAllSuccess: createAction('[Root Component] load all secured_notes success', props<{secured_notes: SecuredNote[]}>()),
+  loadAllFailed: createAction('[Root Component] load all secured_notes failed'),
+
+  load: createAction('[Root Component] load secured_notes', props<{id: IdType}>()),
+  loadSuccess: createAction('[Root Component] load secured_notes success', props<{secured_note?: SecuredNote}>()),
+  loadFailed: createAction('[Root Component] load secured_notes failed'),
+
+  create: createAction('[Root Component] create secured_notes', props<{secured_note: SecuredNoteDto}>()),
+  createSuccess: createAction('[Root Component] create secured_notes success', props<{secured_note: SecuredNote}>()),
+  createFailed: createAction('[Root Component] create secured_notes failed'),
+
+  update: createAction('[Root Component] update secured_notes', props<{id: IdType; secured_note: SecuredNoteDto}>()),
+  updateSuccess: createAction('[Root Component] update secured_notes success', props<{secured_note: SecuredNote}>()),
+  updateFailed: createAction('[Root Component] update secured_notes failed'),
+
+  delete: createAction('[Root Component] delete secured_notes', props<{id: IdType}>()),
+  deleteSuccess: createAction('[Root Component] delete secured_notes success', props<{id: IdType}>()),
+  deleteFailed: createAction('[Root Component] delete secured_notes failed'),
+};
+
+
 
 export const userQuery = {
   load: createAction('[Root Component] load user', props<{id: IdType}>()),

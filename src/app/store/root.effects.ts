@@ -3,12 +3,13 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {ToastrService} from 'ngx-toastr';
 import {RootState} from './root.state';
-import {loginQuery, paymentQuery, userQuery} from './root.actions';
+import {loginQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
 import {catchError, map, of, switchMap} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthResource} from '../services/auth.resource.service';
 import {LoginResource} from '../services/login.resource.service';
 import {PaymentResource} from '../services/payment.resource.service';
+import {SecuredNoteResource} from "../services/secured-note.resource.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,10 @@ export class RootEffects {
     private _router: Router,
     private _authResource: AuthResource,
     private _loginResource: LoginResource,
+    private _securedNoteResource: SecuredNoteResource,
     private _paymentResource: PaymentResource
-  ) {}
+  ) {
+  }
 
   register$ = createEffect(() =>
     this._actions$.pipe(
@@ -261,4 +264,93 @@ export class RootEffects {
       })
     )
   );
+
+  loadSecuredNote$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(securedNotesQuery.load),
+      switchMap(({id}) => {
+        return this._securedNoteResource.load(id).pipe(
+          map((secured_note) => securedNotesQuery.loadSuccess({secured_note})),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(securedNotesQuery.loadFailed());
+          })
+        );
+      })
+    )
+  );
+
+
+  loadAllSecuredNotes$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(securedNotesQuery.loadAll),
+      switchMap(() => {
+        return this._securedNoteResource.loadAll().pipe(
+          map((secured_notes) => securedNotesQuery.loadAllSuccess({secured_notes})),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(securedNotesQuery.loadAllFailed());
+          })
+        );
+      })
+    )
+  );
+
+
+  createSecuredNote$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(securedNotesQuery.create),
+      switchMap(({secured_note}) => {
+        return this._securedNoteResource.create(secured_note).pipe(
+          map((secured_note) => {
+            this._router.navigateByUrl('/secured_notes');
+            return securedNotesQuery.createSuccess({secured_note});
+          }),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(securedNotesQuery.createFailed());
+          })
+        );
+      })
+    )
+  );
+
+
+  updateSecuredNote$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(securedNotesQuery.update),
+      switchMap(({id, secured_note}) => {
+        return this._securedNoteResource.update(id, secured_note).pipe(
+          map((secured_note) => {
+            this._router.navigateByUrl('/secured_notes');
+            return securedNotesQuery.updateSuccess({secured_note});
+          }),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(securedNotesQuery.updateFailed());
+          })
+        );
+      })
+    )
+  );
+
+
+  deleteSecuredNote$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(securedNotesQuery.delete),
+      switchMap(({id}) => {
+        return this._securedNoteResource.delete(id).pipe(
+          map(() => {
+            this._router.navigateByUrl('/secured_notes');
+            return securedNotesQuery.deleteSuccess({id});
+          }),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(securedNotesQuery.deleteFailed());
+          })
+        );
+      })
+    )
+  );
+
 }

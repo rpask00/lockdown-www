@@ -20,8 +20,8 @@ export interface Attachment {
 }
 
 export interface SecuredNoteDto {
-  note: string;
-  title: string;
+  content: string;
+  name: string;
   color: CardColor;
 }
 
@@ -29,7 +29,7 @@ export interface SecuredNote extends SecuredNoteDto {
   id: IdType;
   attachments: Attachment[];
   created_at: string;
-  updated_at: string;
+  modified_at: string;
 }
 
 export enum CardColor {
@@ -86,10 +86,10 @@ export interface RootState {
   paymentLoading?: boolean;
   paymentsLoading?: boolean;
 
-  securedNote?: SecuredNote;
-  securedNotes?: SecuredNote[];
-  securedNoteLoading?: boolean;
-  securedNotesLoading?: boolean;
+  secured_note?: SecuredNote;
+  secured_notes?: SecuredNote[];
+  secured_note_loading?: boolean;
+  secured_notes_loading?: boolean;
 
   userLoading?: boolean;
   user?: User;

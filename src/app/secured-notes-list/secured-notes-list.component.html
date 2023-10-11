@@ -20,15 +20,15 @@
               <mat-icon>note</mat-icon>
             </div>
           </td>
-          <td colspan="10">{{ note.title }}</td>
+          <td colspan="10">{{ note.name }}</td>
           <td class="text-end">
-            <mat-chip [matTooltip]="note.attachments | attachments">{{ note.attachments.length }}</mat-chip>
+            <mat-chip *ngIf="note.attachments" [matTooltip]="note.attachments | attachments">{{ note.attachments.length }}</mat-chip>
           </td>
           <td>
             <table-date [date]="note.created_at"></table-date>
           </td>
           <td>
-            <table-date [date]="note.updated_at"></table-date>
+            <table-date [date]="note.modified_at"></table-date>
           </td>
           <td class="text-end">
             <a

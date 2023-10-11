@@ -1,6 +1,6 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState} from './root.state';
-import {closeDetails, loginQuery, paymentQuery, userQuery} from './root.actions';
+import {closeDetails, loginQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
 
 export const rootReducer = createReducer(
   initialState,
@@ -104,6 +104,41 @@ export const rootReducer = createReducer(
     user
   })),
   on(userQuery.logoutSuccess, (state) => ({...state, user: undefined})),
+
+  // SECURED NOTES
+  on(securedNotesQuery.loadAll, (state) => ({...state, secured_notes_loading: true})),
+  on(securedNotesQuery.loadAllSuccess, securedNotesQuery.loadFailed, (state) => ({
+    ...state,
+    secured_notes_loading: false
+  })),
+  on(securedNotesQuery.loadAllSuccess, (state, {secured_notes}) => ({
+    ...state,
+    secured_notes
+  })),
+
+  on(securedNotesQuery.load, (state) => ({
+    ...state,
+    secured_note_loading: true,
+    securedNote: undefined
+  })),
+  on(securedNotesQuery.loadSuccess, securedNotesQuery.loadFailed, (state) => ({
+    ...state,
+    secured_note_loading: false
+  })),
+  on(securedNotesQuery.loadSuccess, (state, {secured_note}) => ({...state, secured_note})),
+  on(securedNotesQuery.deleteSuccess, (state, {id}) => ({
+    ...state,
+    secured_notes: (state.secured_notes || []).filter((login) => login.id != id)
+  })),
+  on(securedNotesQuery.updateSuccess, (state, {secured_note}) => ({
+    ...state,
+    secured_notes: (state.secured_notes || []).map((l) => (l.id == secured_note.id ? secured_note : l))
+  })),
+  on(securedNotesQuery.createSuccess, (state, {secured_note}) => ({
+    ...state,
+    secured_notes: [...(state.secured_notes || []), secured_note]
+  })),
+
 
   on(closeDetails, (state) => ({
     ...state,

@@ -303,7 +303,7 @@ export class RootEffects {
       switchMap(({secured_note}) => {
         return this._securedNoteResource.create(secured_note).pipe(
           map((secured_note) => {
-            this._router.navigateByUrl('/secured_notes');
+            this._router.navigateByUrl('/secured-notes');
             return securedNotesQuery.createSuccess({secured_note});
           }),
           catchError((error) => {
@@ -322,7 +322,7 @@ export class RootEffects {
       switchMap(({id, secured_note}) => {
         return this._securedNoteResource.update(id, secured_note).pipe(
           map((secured_note) => {
-            this._router.navigateByUrl('/secured_notes');
+            this._router.navigateByUrl('/secured-notes');
             return securedNotesQuery.updateSuccess({secured_note});
           }),
           catchError((error) => {
@@ -341,7 +341,7 @@ export class RootEffects {
       switchMap(({id}) => {
         return this._securedNoteResource.delete(id).pipe(
           map(() => {
-            this._router.navigateByUrl('/secured_notes');
+            this._router.navigateByUrl('/secured-notes');
             return securedNotesQuery.deleteSuccess({id});
           }),
           catchError((error) => {

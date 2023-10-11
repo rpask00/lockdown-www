@@ -119,7 +119,7 @@ export const rootReducer = createReducer(
   on(securedNotesQuery.load, (state) => ({
     ...state,
     secured_note_loading: true,
-    securedNote: undefined
+    secured_note: undefined
   })),
   on(securedNotesQuery.loadSuccess, securedNotesQuery.loadFailed, (state) => ({
     ...state,
@@ -132,14 +132,14 @@ export const rootReducer = createReducer(
   })),
   on(securedNotesQuery.updateSuccess, (state, {secured_note}) => ({
     ...state,
+    secured_note: undefined,
     secured_notes: (state.secured_notes || []).map((l) => (l.id == secured_note.id ? secured_note : l))
   })),
+
   on(securedNotesQuery.createSuccess, (state, {secured_note}) => ({
     ...state,
     secured_notes: [...(state.secured_notes || []), secured_note]
   })),
-
-
   on(closeDetails, (state) => ({
     ...state,
     detailsOpen: false

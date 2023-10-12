@@ -44,6 +44,7 @@ import {SecuredNoteComponent} from './secured-notes-list/secured-note/secured-no
 import {SecuredNoteDetailsComponent} from './secured-notes-list/secured-note-details/secured-note-details.component';
 import {TableDateComponent} from './components/table-date/table-date.component';
 import {AttachmentsPipe} from './pipes/attachments.pipe';
+import {FileSizePipe} from "./pipes/filesize.pipe";
 
 export interface AppState {
   root: RootState;
@@ -67,6 +68,7 @@ export interface AppState {
     SecuredNoteComponent,
     SecuredNoteDetailsComponent,
     TableDateComponent,
+    FileSizePipe,
     AttachmentsPipe
   ],
   imports: [

@@ -30,5 +30,34 @@
       </section>
     </section>
 
+    <section class="attached-files mt-5">
+      <h1 class="mat-title mt-3">List of attachments</h1>
+      <table class="w-100 mt-4 pb-3">
+        <thead>
+        <tr>
+          <th>File Name</th>
+          <th>Date Created</th>
+          <th>File Size</th>
+          <th class="actions pr-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let attachment of attachments">
+          <td class="name pr-3" [matTooltip]="attachment.name">{{attachment.name}}</td>
+          <td>{{attachment.created_at | date}}</td>
+          <td>{{attachment.size  | fileSize}}</td>
+          <td class="actions">
+            <button mat-icon-button color="primary">
+              <mat-icon>download</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
   </section>
 </loader-transparent-container>

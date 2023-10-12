@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {AppState} from "../../app.module";
 import {Store} from "@ngrx/store";
-import {CardColor, SecuredNoteDto} from "../../store/root.state";
+import {Attachment, CardColor, SecuredNoteDto} from "../../store/root.state";
 import {selectSecuredNote, selectSecuredNoteLoading} from "../../store/root.selectors";
 import {securedNotesQuery} from "../../store/root.actions";
 import {firstValueFrom} from "rxjs";
@@ -14,13 +14,69 @@ import {filter} from "rxjs/operators";
   templateUrl: './secured-note-details.component.html',
   styleUrls: ['./secured-note-details.component.scss']
 })
-export class SecuredNoteDetailsComponent implements OnInit{
+export class SecuredNoteDetailsComponent implements OnInit {
   readonly card_colors: CardColor[] = Object.values(CardColor);
   readonly loading$ = this._store.select(selectSecuredNoteLoading);
   readonly securedNote$ = this._store.select(selectSecuredNote).pipe(filter((securedNote) => !!securedNote));
 
   readonly securedNoteId = this._activatedRoute.snapshot.params['id'];
   readonly isNew = !this.securedNoteId;
+
+  readonly attachments: Attachment[] = [
+    {
+      id: 1,
+      name: 'very long name very long name very long name very long name very long name ',
+      size: 145334545,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    },
+    {
+      id: 1,
+      name: 'test',
+      size: 1345,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    }, {
+      id: 1,
+      name: 'test',
+      size: 1345435,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    }, {
+      id: 1,
+      name: 'test',
+      size: 1345435,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    },
+    {
+      id: 1,
+      name: 'test',
+      size: 1345,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    }, {
+      id: 1,
+      name: 'test',
+      size: 1345435,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    }, {
+      id: 1,
+      name: 'test',
+      size: 1345435,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    }, {
+      id: 1,
+      name: 'test',
+      size: 175675,
+      created_at: new Date().toISOString(),
+      note_id: 1
+    },
+
+  ];
+
 
   readonly form = this._fb.group({
     name: ['', Validators.required],
@@ -32,7 +88,6 @@ export class SecuredNoteDetailsComponent implements OnInit{
     private _store: Store<AppState>,
     private _activatedRoute: ActivatedRoute,
     private _fb: FormBuilder
-
   ) {
   }
 

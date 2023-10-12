@@ -17,6 +17,8 @@ export interface Attachment {
   id: IdType;
   name: string;
   size: number;
+  created_at: string;
+  note_id: IdType;
 }
 
 export interface SecuredNoteDto {
@@ -90,6 +92,9 @@ export interface RootState {
   secured_notes?: SecuredNote[];
   secured_note_loading?: boolean;
   secured_notes_loading?: boolean;
+
+  note_attachments?: Attachment[];
+  note_attachments_loading?: boolean;
 
   userLoading?: boolean;
   user?: User;

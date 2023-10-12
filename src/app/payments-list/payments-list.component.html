@@ -10,8 +10,19 @@
 
     <ng-template #emptyMessage>
       <section class="w-100 d-flex justify-content-center">
-        <p class="mt-5 mx-auto">No logins found</p>
+        <p class="mt-5 mx-auto">No payments found</p>
       </section>
     </ng-template>
   </section>
+
+  <section class="w-100 d-flex justify-content-center">
+    <a
+      [routerLink]="['', {outlets: {details: ['payment', 'new']}}]"
+      mat-raised-button
+      color="primary"
+      class="mt-5 mx-auto"
+    >+ Add payment</a
+    >
+  </section>
+
 </loader-transparent-container>

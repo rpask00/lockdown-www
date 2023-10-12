@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {Login} from '../../store/root.state';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'lockdown-login',
@@ -11,7 +12,10 @@ export class LoginComponent {
   @ViewChild('itemIcon') itemIcon?: ElementRef<HTMLImageElement>;
   @Input() login?: Login;
 
-  constructor() {}
+  constructor(
+    private _toastrService: ToastrService
+  ) {
+  }
 
   get linked_website() {
     if (this.login?.linked_websites && this.login?.linked_websites?.length > 0) {
@@ -39,5 +43,9 @@ export class LoginComponent {
     if (this.itemIcon) {
       this.itemIcon.nativeElement.src = 'assets/not-found.png';
     }
+  }
+
+  showSuccess(message: string, title: string = '') {
+    this._toastrService.success(message, title)
   }
 }

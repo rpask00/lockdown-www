@@ -42,11 +42,11 @@
         <mat-icon>redo</mat-icon>
         Go to website
       </div>
-      <div mat-menu-item [cdkCopyToClipboard]="login.password">
+      <div mat-menu-item [cdkCopyToClipboard]="login.password" (click)="showSuccess('Password copied to clipboard!')">
         <mat-icon>file_copy</mat-icon>
         Copy password
       </div>
-      <div mat-menu-item [cdkCopyToClipboard]="login.email">
+      <div mat-menu-item [cdkCopyToClipboard]="login.email" (click)="showSuccess('Email copied to clipboard!')">
         <mat-icon>perm_identity</mat-icon>
         Copy email
       </div>

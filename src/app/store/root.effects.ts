@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {ToastrService} from 'ngx-toastr';
 import {RootState} from './root.state';
-import {loginQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
+import {loginQuery, noteAttachmentsQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
 import {catchError, map, of, switchMap} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthResource} from '../services/auth.resource.service';
@@ -347,6 +347,21 @@ export class RootEffects {
           catchError((error) => {
             this._toastr.error(error.message, 'Error occurred');
             return of(securedNotesQuery.deleteFailed());
+          })
+        );
+      })
+    )
+  );
+
+  loadAllAttachemts$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(noteAttachmentsQuery.loadAll),
+      switchMap(({note_id}) => {
+        return this._securedNoteResource.loadAllAttachments(note_id).pipe(
+          map((note_attachments) => noteAttachmentsQuery.loadAllSuccess({note_attachments})),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(noteAttachmentsQuery.loadAllFailed());
           })
         );
       })

@@ -1,9 +1,8 @@
 <loader-transparent-container [loading]="loading$">
   <section class="container d-flex flex-column" [formGroup]="form">
-
     <mat-form-field appearance="outline" class="my-2">
       <mat-label>Note Title</mat-label>
-      <input matInput formControlName="name"/>
+      <input matInput formControlName="name" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="my-2">
@@ -11,13 +10,12 @@
       <textarea matInput formControlName="content" rows="20"></textarea>
     </mat-form-field>
 
-
     <mat-form-field appearance="outline" class="my-2">
       <mat-label>Color</mat-label>
       <mat-select formControlName="color">
         <mat-option [style.color]="color" *ngFor="let color of card_colors" [value]="color">{{
           color.toUpperCase()
-          }}</mat-option>
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -30,34 +28,37 @@
       </section>
     </section>
 
-    <section class="attached-files mt-5">
+    <section class="attached-files mt-5" *ngIf="attachments$ | async as attachments">
       <h1 class="mat-title mt-3">List of attachments</h1>
-      <table class="w-100 mt-4 pb-3">
+      <table class="w-100 mt-4 pb-3" *ngIf='attachments.length; else noAttachments'>
         <thead>
-        <tr>
-          <th>File Name</th>
-          <th>Date Created</th>
-          <th>File Size</th>
-          <th class="actions pr-3">Actions</th>
-        </tr>
+          <tr>
+            <th>File Name</th>
+            <th>Date Created</th>
+            <th>File Size</th>
+            <th class="actions pr-3">Actions</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let attachment of attachments">
-          <td class="name pr-3" [matTooltip]="attachment.name">{{attachment.name}}</td>
-          <td>{{attachment.created_at | date}}</td>
-          <td>{{attachment.size  | fileSize}}</td>
-          <td class="actions">
-            <button mat-icon-button color="primary">
-              <mat-icon>download</mat-icon>
-            </button>
+          <tr *ngFor="let attachment of attachments">
+            <td class="name pr-3" [matTooltip]="attachment.name">{{ attachment.name }}</td>
+            <td>{{ attachment.created_at | date }}</td>
+            <td>{{ attachment.size | fileSize }}</td>
+            <td class="actions">
+              <button mat-icon-button color="primary">
+                <mat-icon>download</mat-icon>
+              </button>
 
-            <button mat-icon-button color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </tr>
+              <button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
+      <ng-template #noAttachments>
+        Attachments not found for this note
+      </ng-template>
     </section>
   </section>
 </loader-transparent-container>

@@ -4,8 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {AppState} from "../../app.module";
 import {Store} from "@ngrx/store";
 import {Attachment, CardColor, SecuredNoteDto} from "../../store/root.state";
-import {selectSecuredNote, selectSecuredNoteLoading} from "../../store/root.selectors";
-import {securedNotesQuery} from "../../store/root.actions";
+import {selectNoteAttachments, selectSecuredNote, selectSecuredNoteLoading} from '../../store/root.selectors';
+import {noteAttachmentsQuery, securedNotesQuery} from '../../store/root.actions';
 import {firstValueFrom} from "rxjs";
 import {filter} from "rxjs/operators";
 
@@ -19,64 +19,10 @@ export class SecuredNoteDetailsComponent implements OnInit {
   readonly loading$ = this._store.select(selectSecuredNoteLoading);
   readonly securedNote$ = this._store.select(selectSecuredNote).pipe(filter((securedNote) => !!securedNote));
 
+  readonly attachments$ = this._store.select(selectNoteAttachments);
+
   readonly securedNoteId = this._activatedRoute.snapshot.params['id'];
   readonly isNew = !this.securedNoteId;
-
-  readonly attachments: Attachment[] = [
-    {
-      id: 1,
-      name: 'very long name very long name very long name very long name very long name ',
-      size: 145334545,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    },
-    {
-      id: 1,
-      name: 'test',
-      size: 1345,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    }, {
-      id: 1,
-      name: 'test',
-      size: 1345435,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    }, {
-      id: 1,
-      name: 'test',
-      size: 1345435,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    },
-    {
-      id: 1,
-      name: 'test',
-      size: 1345,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    }, {
-      id: 1,
-      name: 'test',
-      size: 1345435,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    }, {
-      id: 1,
-      name: 'test',
-      size: 1345435,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    }, {
-      id: 1,
-      name: 'test',
-      size: 175675,
-      created_at: new Date().toISOString(),
-      note_id: 1
-    },
-
-  ];
-
 
   readonly form = this._fb.group({
     name: ['', Validators.required],
@@ -94,6 +40,7 @@ export class SecuredNoteDetailsComponent implements OnInit {
   async ngOnInit() {
     if (!this.isNew) {
       this._store.dispatch(securedNotesQuery.load({id: this.securedNoteId}));
+      this._store.dispatch(noteAttachmentsQuery.loadAll({note_id: this.securedNoteId}));
       const securedNote = await firstValueFrom(this.securedNote$);
       this.form.patchValue({...securedNote});
     }

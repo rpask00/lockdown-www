@@ -1,6 +1,13 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState} from './root.state';
-import {closeDetails, loginQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
+import {
+  closeDetails,
+  loginQuery,
+  noteAttachmentsQuery,
+  paymentQuery,
+  securedNotesQuery,
+  userQuery
+} from './root.actions';
 
 export const rootReducer = createReducer(
   initialState,
@@ -136,6 +143,16 @@ export const rootReducer = createReducer(
     secured_notes: (state.secured_notes || []).map((l) => (l.id == secured_note.id ? secured_note : l))
   })),
 
+  // SECURED NOTE ATTACHMENTS
+  on(noteAttachmentsQuery.loadAll, (state) => ({...state, note_attachments_loading: true})),
+  on(noteAttachmentsQuery.loadAllSuccess, noteAttachmentsQuery.loadAllFailed, (state) => ({
+    ...state,
+    note_attachments_loading: false
+  })),
+  on(noteAttachmentsQuery.loadAllSuccess, (state, {note_attachments}) => ({
+    ...state,
+    note_attachments
+  })),
   on(securedNotesQuery.createSuccess, (state, {secured_note}) => ({
     ...state,
     secured_notes: [...(state.secured_notes || []), secured_note]

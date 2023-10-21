@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {IdType, SecuredNote, SecuredNoteDto} from '../store/root.state';
+import {Attachment, IdType, SecuredNote, SecuredNoteDto} from '../store/root.state';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -19,6 +19,9 @@ export class SecuredNoteResource {
 
   loadAll(): Observable<SecuredNote[]> {
     return this.http.get<SecuredNote[]>(`${this.resource}/secured_notes`);
+  }
+  loadAllAttachments(id:IdType): Observable<Attachment[]> {
+    return this.http.get<Attachment[]>(`${this.resource}/secured_notes/${id}/attachments`);
   }
 
   load(id: IdType): Observable<SecuredNote> {

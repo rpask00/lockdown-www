@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {
+  Attachment,
   IdType,
   Login,
   LoginDto,
@@ -86,6 +87,12 @@ export const securedNotesQuery = {
   deleteFailed: createAction('[Root Component] delete secured_notes failed'),
 };
 
+
+export const noteAttachmentsQuery = {
+  loadAll: createAction('[Root Component] load all note_attachments', props<{note_id: IdType}>()),
+  loadAllSuccess: createAction('[Root Component] load all note_attachments success', props<{note_attachments: Attachment[]}>()),
+  loadAllFailed: createAction('[Root Component] load all note_attachments failed'),
+}
 
 
 export const userQuery = {

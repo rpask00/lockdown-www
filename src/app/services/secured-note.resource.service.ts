@@ -37,4 +37,7 @@ export class SecuredNoteResource {
   }
 
 
+  downloadAttachment(id: IdType) {
+    return this.http.get(`${this.resource}/attachments/` + id, {responseType: 'blob'})
+  }
 }

@@ -1,6 +1,6 @@
 import {createSelector} from '@ngrx/store';
 import {AppState} from '../app.module';
-import {RootState} from './root.state';
+import {IdType, RootState} from './root.state';
 
 export const selectRoot = createSelector(
   (state: AppState) => state,
@@ -31,3 +31,4 @@ export const selectSecuredNotesLoading = createSelector(selectRoot, (state: Root
 // NOTE ATTACHMENTS
 
 export const selectNoteAttachments = createSelector(selectRoot, (state: RootState) => state.note_attachments || []);
+export const selectNoteAttachment = (id: IdType) => createSelector(selectRoot, (state: RootState) => state.note_attachments?.find(n => n.id == id) || null);

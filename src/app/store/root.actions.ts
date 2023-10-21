@@ -92,6 +92,10 @@ export const noteAttachmentsQuery = {
   loadAll: createAction('[Root Component] load all note_attachments', props<{note_id: IdType}>()),
   loadAllSuccess: createAction('[Root Component] load all note_attachments success', props<{note_attachments: Attachment[]}>()),
   loadAllFailed: createAction('[Root Component] load all note_attachments failed'),
+
+  download: createAction('[Root Component] download note_attachments', props<{id: IdType}>()),
+  downloadSuccess: createAction('[Root Component] download note_attachments success'),
+  downloadFailed: createAction('[Root Component] download note_attachments failed'),
 }
 
 

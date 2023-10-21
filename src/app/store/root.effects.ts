@@ -2,14 +2,17 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {ToastrService} from 'ngx-toastr';
-import {RootState} from './root.state';
+import {Attachment, RootState} from './root.state';
 import {loginQuery, noteAttachmentsQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
-import {catchError, map, of, switchMap} from 'rxjs';
+import {catchError, map, of, switchMap, withLatestFrom} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthResource} from '../services/auth.resource.service';
 import {LoginResource} from '../services/login.resource.service';
 import {PaymentResource} from '../services/payment.resource.service';
-import {SecuredNoteResource} from "../services/secured-note.resource.service";
+import {SecuredNoteResource} from '../services/secured-note.resource.service';
+import {selectNoteAttachment} from './root.selectors';
+import {AppState} from '../app.module';
+import {filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +20,14 @@ import {SecuredNoteResource} from "../services/secured-note.resource.service";
 export class RootEffects {
   constructor(
     private _actions$: Actions,
-    private _store: Store<RootState>,
+    private _store: Store<AppState>,
     private _toastr: ToastrService,
     private _router: Router,
     private _authResource: AuthResource,
     private _loginResource: LoginResource,
     private _securedNoteResource: SecuredNoteResource,
     private _paymentResource: PaymentResource
-  ) {
-  }
+  ) {}
 
   register$ = createEffect(() =>
     this._actions$.pipe(
@@ -280,7 +282,6 @@ export class RootEffects {
     )
   );
 
-
   loadAllSecuredNotes$ = createEffect(() =>
     this._actions$.pipe(
       ofType(securedNotesQuery.loadAll),
@@ -295,7 +296,6 @@ export class RootEffects {
       })
     )
   );
-
 
   createSecuredNote$ = createEffect(() =>
     this._actions$.pipe(
@@ -315,7 +315,6 @@ export class RootEffects {
     )
   );
 
-
   updateSecuredNote$ = createEffect(() =>
     this._actions$.pipe(
       ofType(securedNotesQuery.update),
@@ -333,7 +332,6 @@ export class RootEffects {
       })
     )
   );
-
 
   deleteSecuredNote$ = createEffect(() =>
     this._actions$.pipe(
@@ -368,4 +366,28 @@ export class RootEffects {
     )
   );
 
+  downloadAttachment$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(noteAttachmentsQuery.download),
+      switchMap(({id}) => this._store.select(selectNoteAttachment(id))),
+      filter((attachment) => attachment != null),
+      switchMap((attachment) => {
+        attachment = attachment as Attachment;
+        return this._securedNoteResource.downloadAttachment(attachment.id).pipe(
+          map((blob) => {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = attachment?.name || 'file';
+            downloadLink.click();
+
+            return noteAttachmentsQuery.downloadSuccess();
+          }),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(noteAttachmentsQuery.downloadFailed());
+          })
+        );
+      })
+    )
+  );
 }

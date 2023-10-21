@@ -45,7 +45,7 @@
             <td>{{ attachment.created_at | date }}</td>
             <td>{{ attachment.size | fileSize }}</td>
             <td class="actions">
-              <button mat-icon-button color="primary">
+              <button mat-icon-button color="primary" (click)='downloadAttachment(attachment.id)'>
                 <mat-icon>download</mat-icon>
               </button>
 

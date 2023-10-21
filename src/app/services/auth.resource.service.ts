@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {LoginRequest, User, UserDto} from "../store/root.state";
-import {Observable} from "rxjs";
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {LoginRequest, User, UserDto} from '../store/root.state';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,7 @@ import {Observable} from "rxjs";
 export class AuthResource {
   readonly resource = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-  ) {
-  }
+  constructor(private http: HttpClient) {}
 
   status(): Observable<boolean> {
     return this.http.get<boolean>(`${this.resource}/status`, {withCredentials: true});

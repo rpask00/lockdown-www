@@ -67,7 +67,10 @@ export const paymentQuery = {
 
 export const securedNotesQuery = {
   loadAll: createAction('[Root Component] load all secured_notes'),
-  loadAllSuccess: createAction('[Root Component] load all secured_notes success', props<{secured_notes: SecuredNote[]}>()),
+  loadAllSuccess: createAction(
+    '[Root Component] load all secured_notes success',
+    props<{secured_notes: SecuredNote[]}>()
+  ),
   loadAllFailed: createAction('[Root Component] load all secured_notes failed'),
 
   load: createAction('[Root Component] load secured_notes', props<{id: IdType}>()),
@@ -84,20 +87,21 @@ export const securedNotesQuery = {
 
   delete: createAction('[Root Component] delete secured_notes', props<{id: IdType}>()),
   deleteSuccess: createAction('[Root Component] delete secured_notes success', props<{id: IdType}>()),
-  deleteFailed: createAction('[Root Component] delete secured_notes failed'),
+  deleteFailed: createAction('[Root Component] delete secured_notes failed')
 };
-
 
 export const noteAttachmentsQuery = {
   loadAll: createAction('[Root Component] load all note_attachments', props<{note_id: IdType}>()),
-  loadAllSuccess: createAction('[Root Component] load all note_attachments success', props<{note_attachments: Attachment[]}>()),
+  loadAllSuccess: createAction(
+    '[Root Component] load all note_attachments success',
+    props<{note_attachments: Attachment[]}>()
+  ),
   loadAllFailed: createAction('[Root Component] load all note_attachments failed'),
 
   download: createAction('[Root Component] download note_attachments', props<{id: IdType}>()),
   downloadSuccess: createAction('[Root Component] download note_attachments success'),
-  downloadFailed: createAction('[Root Component] download note_attachments failed'),
-}
-
+  downloadFailed: createAction('[Root Component] download note_attachments failed')
+};
 
 export const userQuery = {
   load: createAction('[Root Component] load user', props<{id: IdType}>()),

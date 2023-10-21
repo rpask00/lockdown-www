@@ -3,40 +3,40 @@
     <section *ngIf="securedNotes.length; else emptyMessage">
       <table class="w-100">
         <thead>
-        <tr>
-          <th></th>
-          <th colspan="10">NOTE NAME</th>
-          <th class="text-end">Created at</th>
-          <th class="text-end">Updated at</th>
-          <th></th>
-        </tr>
+          <tr>
+            <th></th>
+            <th colspan="10">NOTE NAME</th>
+            <th class="text-end">Created at</th>
+            <th class="text-end">Updated at</th>
+            <th></th>
+          </tr>
         </thead>
 
         <tbody>
-        <tr *ngFor="let note of securedNotes">
-          <td>
-            <div class="note-icon ml-3" [style.background-color]="note.color">
-              <mat-icon>note</mat-icon>
-            </div>
-          </td>
-          <td colspan="10">{{ note.name }}</td>
+          <tr *ngFor="let note of securedNotes">
+            <td>
+              <div class="note-icon ml-3" [style.background-color]="note.color">
+                <mat-icon>note</mat-icon>
+              </div>
+            </td>
+            <td colspan="10">{{ note.name }}</td>
 
-          <td>
-            <table-date [date]="note.created_at"></table-date>
-          </td>
-          <td>
-            <table-date [date]="note.modified_at"></table-date>
-          </td>
-          <td class="text-end">
-            <a
-              mat-icon-button
-              class="mr-4"
-              [routerLink]="['', {outlets: {details: ['secured-note', 'edit', note.id]}}]"
-            >
-              <mat-icon>search</mat-icon>
-            </a>
-          </td>
-        </tr>
+            <td>
+              <table-date [date]="note.created_at"></table-date>
+            </td>
+            <td>
+              <table-date [date]="note.modified_at"></table-date>
+            </td>
+            <td class="text-end">
+              <a
+                mat-icon-button
+                class="mr-4"
+                [routerLink]="['', {outlets: {details: ['secured-note', 'edit', note.id]}}]"
+              >
+                <mat-icon>search</mat-icon>
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -47,7 +47,7 @@
         mat-raised-button
         color="primary"
         class="mt-5 mx-auto"
-      >+ Add secured note
+        >+ Add secured note
       </a>
     </section>
 

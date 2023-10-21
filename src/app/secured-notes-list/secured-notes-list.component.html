@@ -6,7 +6,6 @@
         <tr>
           <th></th>
           <th colspan="10">NOTE NAME</th>
-          <th class="text-end">Attachments</th>
           <th class="text-end">Created at</th>
           <th class="text-end">Updated at</th>
           <th></th>
@@ -21,9 +20,7 @@
             </div>
           </td>
           <td colspan="10">{{ note.name }}</td>
-          <td class="text-end">
-            <mat-chip *ngIf="note.attachments" [matTooltip]="note.attachments | attachments">{{ note.attachments.length }}</mat-chip>
-          </td>
+
           <td>
             <table-date [date]="note.created_at"></table-date>
           </td>

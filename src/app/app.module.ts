@@ -43,7 +43,6 @@ import {SecuredNotesListComponent} from './secured-notes-list/secured-notes-list
 import {SecuredNoteComponent} from './secured-notes-list/secured-note/secured-note.component';
 import {SecuredNoteDetailsComponent} from './secured-notes-list/secured-note-details/secured-note-details.component';
 import {TableDateComponent} from './components/table-date/table-date.component';
-import {AttachmentsPipe} from './pipes/attachments.pipe';
 import {FileSizePipe} from "./pipes/filesize.pipe";
 
 export interface AppState {
@@ -69,7 +68,6 @@ export interface AppState {
     SecuredNoteDetailsComponent,
     TableDateComponent,
     FileSizePipe,
-    AttachmentsPipe
   ],
   imports: [
     BrowserModule,

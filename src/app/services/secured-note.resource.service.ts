@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Attachment, IdType, SecuredNote, SecuredNoteDto} from '../store/root.state';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,7 @@ import {Observable} from 'rxjs';
 export class SecuredNoteResource {
   readonly resource = environment.apiUrl;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   create(secured_note: SecuredNoteDto): Observable<SecuredNote> {
     return this.http.post<SecuredNote>(`${this.resource}/secured_notes`, secured_note);
@@ -40,7 +39,9 @@ export class SecuredNoteResource {
   uploadAttachment(note_id: IdType, file: File) {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<Attachment[]>(`${this.resource}/secured_notes/${note_id}/attachments/`, formData);
+    return this.http
+      .post<Attachment[]>(`${this.resource}/secured_notes/${note_id}/attachments/`, formData)
+      .pipe(map((attachments: Attachment[]) => attachments[0]));
   }
 
   downloadAttachment(id: IdType) {

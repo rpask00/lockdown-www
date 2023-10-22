@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {ToastrService} from 'ngx-toastr';
 import {Attachment, RootState} from './root.state';
 import {loginQuery, noteAttachmentsQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
-import {catchError, delay, map, of, switchMap, withLatestFrom} from 'rxjs';
+import {catchError, combineLatest, delay, forkJoin, map, of, switchMap, withLatestFrom} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthResource} from '../services/auth.resource.service';
 import {LoginResource} from '../services/login.resource.service';
@@ -27,8 +27,7 @@ export class RootEffects {
     private _loginResource: LoginResource,
     private _securedNoteResource: SecuredNoteResource,
     private _paymentResource: PaymentResource
-  ) {
-  }
+  ) {}
 
   register$ = createEffect(() =>
     this._actions$.pipe(
@@ -396,17 +395,15 @@ export class RootEffects {
     this._actions$.pipe(
       ofType(noteAttachmentsQuery.upload),
       delay(10),
-      switchMap(({note_id, file}) => {
-        return this._securedNoteResource.uploadAttachment(note_id, file).pipe(
-          map((note_attachment) => {
-            return noteAttachmentsQuery.uploadSuccess({note_attachment: note_attachment[0]});
-          }),
+      switchMap(({note_id, files}) =>
+        combineLatest(files.map((file) => this._securedNoteResource.uploadAttachment(note_id, file))).pipe(
+          map((note_attachments) => noteAttachmentsQuery.uploadSuccess({note_attachments})),
           catchError((error) => {
             this._toastr.error(error.message, 'Error occurred');
             return of(noteAttachmentsQuery.uploadFailed());
           })
-        );
-      })
+        )
+      )
     )
   );
 }

@@ -167,8 +167,8 @@ export const rootReducer = createReducer(
     ...state,
     note_attachments_loading: false
   })),
-  on(noteAttachmentsQuery.uploadSuccess, (state, {note_attachment}) => ({
+  on(noteAttachmentsQuery.uploadSuccess, (state, {note_attachments}) => ({
     ...state,
-    note_attachments: [...(state.note_attachments || []), note_attachment]
+    note_attachments: [...(state.note_attachments || []), ...note_attachments]
   }))
 );

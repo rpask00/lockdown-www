@@ -34,7 +34,8 @@ export class SecuredNoteDetailsComponent implements OnInit {
     private _store: Store<AppState>,
     private _activatedRoute: ActivatedRoute,
     private _fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     if (!this.isNew) {
@@ -63,8 +64,6 @@ export class SecuredNoteDetailsComponent implements OnInit {
   }
 
   attachmentsDropped(attachments: File[]) {
-    for (const attachment of attachments) {
-      this._store.dispatch(noteAttachmentsQuery.upload({note_id: this.securedNoteId, file: attachment}));
-    }
+    this._store.dispatch(noteAttachmentsQuery.upload({note_id: this.securedNoteId, files: [...attachments]}));
   }
 }

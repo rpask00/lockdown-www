@@ -7,6 +7,6 @@
       attachments
     </p>
 
-    <input (change)="droppedFiles($event)" type="file" #selectFileInput />
+    <input [multiple]='multiple' (change)="droppedFiles($event)" type="file" #selectFileInput />
   </div>
 </div>

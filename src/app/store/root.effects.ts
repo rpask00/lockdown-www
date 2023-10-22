@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {ToastrService} from 'ngx-toastr';
 import {Attachment, RootState} from './root.state';
 import {loginQuery, noteAttachmentsQuery, paymentQuery, securedNotesQuery, userQuery} from './root.actions';
-import {catchError, map, of, switchMap, withLatestFrom} from 'rxjs';
+import {catchError, delay, map, of, switchMap, withLatestFrom} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthResource} from '../services/auth.resource.service';
 import {LoginResource} from '../services/login.resource.service';
@@ -395,6 +395,7 @@ export class RootEffects {
   uploadAttachment$ = createEffect(() =>
     this._actions$.pipe(
       ofType(noteAttachmentsQuery.upload),
+      delay(10),
       switchMap(({note_id, file}) => {
         return this._securedNoteResource.uploadAttachment(note_id, file).pipe(
           map((note_attachment) => {

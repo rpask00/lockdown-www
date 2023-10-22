@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'lockdown-import-file',
@@ -7,6 +7,7 @@ import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@a
 })
 export class ImportFileComponent implements OnInit {
   @Output() onFilesDrop = new EventEmitter<File[]>();
+  @Input() multiple = true;
 
   @ViewChild('selectFileInput') selectFileInput?: ElementRef<HTMLInputElement>;
 
@@ -21,8 +22,8 @@ export class ImportFileComponent implements OnInit {
   }
 
   droppedFiles(e: any) {
-    if (e.files) {
-      this.onFilesDrop.emit(e.files);
+    if (e.target?.files) {
+      this.onFilesDrop.emit(e.target?.files);
     }
   }
 }

@@ -34,8 +34,7 @@ export class SecuredNoteDetailsComponent implements OnInit {
     private _store: Store<AppState>,
     private _activatedRoute: ActivatedRoute,
     private _fb: FormBuilder
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
     if (!this.isNew) {
@@ -65,5 +64,9 @@ export class SecuredNoteDetailsComponent implements OnInit {
 
   attachmentsDropped(attachments: File[]) {
     this._store.dispatch(noteAttachmentsQuery.upload({note_id: this.securedNoteId, files: [...attachments]}));
+  }
+
+  deleteAttachment(id: IdType) {
+    this._store.dispatch(noteAttachmentsQuery.delete({id}));
   }
 }

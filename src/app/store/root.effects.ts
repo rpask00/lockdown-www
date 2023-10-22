@@ -406,4 +406,19 @@ export class RootEffects {
       )
     )
   );
+
+  deleteAttachment$ = createEffect(() => {
+    return this._actions$.pipe(
+      ofType(noteAttachmentsQuery.delete),
+      switchMap(({id}) =>
+        this._securedNoteResource.deleteAttachment(id).pipe(
+          map(() => noteAttachmentsQuery.deleteSuccess({id})),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(noteAttachmentsQuery.deleteFailed());
+          })
+        )
+      )
+    );
+  });
 }

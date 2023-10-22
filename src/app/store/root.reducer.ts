@@ -170,5 +170,14 @@ export const rootReducer = createReducer(
   on(noteAttachmentsQuery.uploadSuccess, (state, {note_attachments}) => ({
     ...state,
     note_attachments: [...(state.note_attachments || []), ...note_attachments]
+  })),
+  on(noteAttachmentsQuery.delete, (state) => ({...state, note_attachments_loading: true})),
+  on(noteAttachmentsQuery.deleteSuccess, noteAttachmentsQuery.deleteFailed, (state) => ({
+    ...state,
+    note_attachments_loading: false
+  })),
+  on(noteAttachmentsQuery.deleteSuccess, (state, {id}) => ({
+    ...state,
+    note_attachments: (state.note_attachments || []).filter((login) => login.id != id)
   }))
 );

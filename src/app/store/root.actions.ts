@@ -105,6 +105,11 @@ export const noteAttachmentsQuery = {
   upload: createAction('[Root Component] upload note_attachments', props<{note_id: IdType; files: File[]}>()),
   uploadSuccess: createAction('[Root Component] upload note_attachments success', props<{note_attachments: Attachment[]}>()),
   uploadFailed: createAction('[Root Component] upload note_attachments failed'),
+
+  delete: createAction('[Root Component] delete note_attachments', props<{id: IdType}>()),
+  deleteSuccess: createAction('[Root Component] delete note_attachments success', props<{id: IdType}>()),
+  deleteFailed: createAction('[Root Component] delete note_attachments failed')
+
 };
 
 export const userQuery = {

@@ -44,6 +44,11 @@ export class SecuredNoteResource {
       .pipe(map((attachments: Attachment[]) => attachments[0]));
   }
 
+  deleteAttachment(id: IdType) {
+    return this.http.delete(`${this.resource}/attachments/` + id);
+  }
+
+
   downloadAttachment(id: IdType) {
     return this.http.get(`${this.resource}/attachments/` + id, {responseType: 'blob'});
   }

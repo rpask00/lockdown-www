@@ -28,3 +28,28 @@
     }
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+#file-input {
+  display: none;
+}
+
+#file-list {
+  list-style: none;
+  padding: 0;
+}
+
+#file-list li {
+  margin: 5px 0;
+}

@@ -1,0 +1,12 @@
+<div class="drop-down-zone-wrapper">
+  <div class="drop-down-zone" dragDrop (files)="onFilesDrop.emit($event)">
+    <mat-icon class="ml-3" >download</mat-icon>
+    <p class="mr-3">
+      Drag and drop or
+      <span class="selectFile" (click)="selectFile()">select</span>
+      attachments
+    </p>
+
+    <input (change)="droppedFiles($event)" type="file" #selectFileInput />
+  </div>
+</div>

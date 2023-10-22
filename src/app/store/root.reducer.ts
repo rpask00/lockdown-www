@@ -143,6 +143,15 @@ export const rootReducer = createReducer(
     secured_notes: (state.secured_notes || []).map((l) => (l.id == secured_note.id ? secured_note : l))
   })),
 
+  on(securedNotesQuery.createSuccess, (state, {secured_note}) => ({
+    ...state,
+    secured_notes: [...(state.secured_notes || []), secured_note]
+  })),
+  on(closeDetails, (state) => ({
+    ...state,
+    detailsOpen: false
+  })),
+
   // SECURED NOTE ATTACHMENTS
   on(noteAttachmentsQuery.loadAll, (state) => ({...state, note_attachments_loading: true})),
   on(noteAttachmentsQuery.loadAllSuccess, noteAttachmentsQuery.loadAllFailed, (state) => ({
@@ -153,12 +162,13 @@ export const rootReducer = createReducer(
     ...state,
     note_attachments
   })),
-  on(securedNotesQuery.createSuccess, (state, {secured_note}) => ({
+  on(noteAttachmentsQuery.upload, (state) => ({...state, note_attachments_loading: true})),
+  on(noteAttachmentsQuery.uploadFailed, noteAttachmentsQuery.uploadSuccess, (state) => ({
     ...state,
-    secured_notes: [...(state.secured_notes || []), secured_note]
+    note_attachments_loading: false
   })),
-  on(closeDetails, (state) => ({
+  on(noteAttachmentsQuery.uploadSuccess, (state, {note_attachment}) => ({
     ...state,
-    detailsOpen: false
+    note_attachments: [...(state.note_attachments || []), note_attachment]
   }))
 );

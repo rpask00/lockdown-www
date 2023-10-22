@@ -27,7 +27,8 @@ export class RootEffects {
     private _loginResource: LoginResource,
     private _securedNoteResource: SecuredNoteResource,
     private _paymentResource: PaymentResource
-  ) {}
+  ) {
+  }
 
   register$ = createEffect(() =>
     this._actions$.pipe(
@@ -385,6 +386,23 @@ export class RootEffects {
           catchError((error) => {
             this._toastr.error(error.message, 'Error occurred');
             return of(noteAttachmentsQuery.downloadFailed());
+          })
+        );
+      })
+    )
+  );
+
+  uploadAttachment$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(noteAttachmentsQuery.upload),
+      switchMap(({note_id, file}) => {
+        return this._securedNoteResource.uploadAttachment(note_id, file).pipe(
+          map((note_attachment) => {
+            return noteAttachmentsQuery.uploadSuccess({note_attachment: note_attachment[0]});
+          }),
+          catchError((error) => {
+            this._toastr.error(error.message, 'Error occurred');
+            return of(noteAttachmentsQuery.uploadFailed());
           })
         );
       })

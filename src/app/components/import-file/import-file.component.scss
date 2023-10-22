@@ -1,0 +1,37 @@
+.drop-down-zone-wrapper {
+  padding: 20px;
+  margin: 0 auto 20px auto;
+  background-color: rgba(123, 31, 162, 0.10);
+  border-radius: 4px;
+  max-height: 200px;
+  max-width: 1400px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap !important;
+}
+
+.drop-down-zone {
+  font-weight: 500;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  transition: 0.2s;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: 2px dashed #7b1fa2;
+
+  mat-icon {
+    margin-right: 10px;
+    transform: translateY(-5px);
+  }
+}
+
+.selectFile {
+  color: #7b1fa2;
+  cursor: pointer;
+}
+
+input {
+  display: none;
+}

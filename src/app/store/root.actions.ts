@@ -100,7 +100,11 @@ export const noteAttachmentsQuery = {
 
   download: createAction('[Root Component] download note_attachments', props<{id: IdType}>()),
   downloadSuccess: createAction('[Root Component] download note_attachments success'),
-  downloadFailed: createAction('[Root Component] download note_attachments failed')
+  downloadFailed: createAction('[Root Component] download note_attachments failed'),
+
+  upload: createAction('[Root Component] upload note_attachments', props<{note_id: IdType; file: File}>()),
+  uploadSuccess: createAction('[Root Component] upload note_attachments success', props<{note_attachment: Attachment}>()),
+  uploadFailed: createAction('[Root Component] upload note_attachments failed'),
 };
 
 export const userQuery = {

@@ -56,7 +56,8 @@
           </tr>
         </tbody>
       </table>
-      <ng-template #noAttachments> Attachments not found for this note </ng-template>
+      <ng-template #noAttachments><p> Attachments not found for this note </p></ng-template>
+      <lockdown-import-file (onFilesDrop)='attachmentsDropped($event)'></lockdown-import-file>
     </section>
   </section>
 </loader-transparent-container>

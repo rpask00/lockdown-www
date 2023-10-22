@@ -61,4 +61,10 @@ export class SecuredNoteDetailsComponent implements OnInit {
   downloadAttachment(id: IdType) {
     this._store.dispatch(noteAttachmentsQuery.download({id}));
   }
+
+  attachmentsDropped(attachments: File[]) {
+    for (const attachment of attachments) {
+      this._store.dispatch(noteAttachmentsQuery.upload({note_id: this.securedNoteId, file: attachment}));
+    }
+  }
 }

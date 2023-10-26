@@ -27,7 +27,7 @@ import {LoaderTransparentComponent} from './components/loader-transparent/loader
 import {AuthComponent} from './auth/auth.component';
 import {HomeComponent} from './home/home.component';
 import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
@@ -46,6 +46,11 @@ import {TableDateComponent} from './components/table-date/table-date.component';
 import {FileSizePipe} from './pipes/filesize.pipe';
 import {ImportFileComponent} from './components/import-file/import-file.component';
 import {DragDropDirective} from './components/import-file/drag-drop.directive';
+import {PasswordGeneratorComponent} from './components/password-generator/password-generator.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 export interface AppState {
   root: RootState;
@@ -71,7 +76,8 @@ export interface AppState {
     TableDateComponent,
     ImportFileComponent,
     DragDropDirective,
-    FileSizePipe
+    FileSizePipe,
+    PasswordGeneratorComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +103,12 @@ export interface AppState {
     ClipboardModule,
     NgOptimizedImage,
     MatSelectModule,
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatProgressBarModule,
+    MatExpansionModule
   ],
   providers: [
     {

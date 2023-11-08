@@ -71,10 +71,10 @@
 
           "configurations": {
             "production": {
-              "browserTarget": "lockdown-www:build:production"
+              "buildTarget": "lockdown-www:build:production"
             },
             "development": {
-              "browserTarget": "lockdown-www:build:development"
+              "buildTarget": "lockdown-www:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lockdown-www:build"
+            "buildTarget": "lockdown-www:build"
           }
         },
         "test": {

@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap');
 /* You can add global styles to this file, and also import other style files */
+
 @import 'styles/spacings';
 
 html,
@@ -6,6 +8,21 @@ body {
   height: 100%;
   --bs-body-bg: #555555;
 }
+
+
+h1.app-title {
+  color: white;
+  font-family: 'Vina Sans', sans-serif !important;
+  text-align: center;
+  font-size: 1.8rem !important;
+
+
+  span {
+    font-size: 1.2rem !important;
+    opacity: 0.6;
+  }
+}
+
 
 body {
   margin: 0;

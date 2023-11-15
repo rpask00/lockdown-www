@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {securedNotesQuery} from '../store/root.actions';
+import {securedNotesQuery} from '../../store/root.actions';
 import {Store} from '@ngrx/store';
-import {AppState} from '../app.module';
-import {selectSecuredNotes, selectSecuredNotesLoading} from '../store/root.selectors';
+import {AppState} from '../../app.module';
+import {selectSecuredNotes, selectSecuredNotesLoading} from '../../store/root.selectors';
 
 @Component({
   selector: 'lockdown-secured-notes-list',

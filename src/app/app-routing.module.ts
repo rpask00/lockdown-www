@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginsListComponent} from './logins-list/logins-list.component';
-import {LoginDetailsComponent} from './logins-list/login-details/login-details.component';
-import {AuthComponent} from './auth/auth.component';
-import {HomeComponent} from './home/home.component';
-import {PaymentsListComponent} from './payments-list/payments-list.component';
-import {PaymentDetailsComponent} from './payments-list/payment-details/payment-details.component';
-import {SecuredNotesListComponent} from './secured-notes-list/secured-notes-list.component';
-import {SecuredNoteDetailsComponent} from './secured-notes-list/secured-note-details/secured-note-details.component';
+import {LoginsListComponent} from './components/logins-list/logins-list.component';
+import {LoginDetailsComponent} from './components/logins-list/login-details/login-details.component';
+import {AuthComponent} from './components/auth/auth.component';
+import {HomeComponent} from './components/home/home.component';
+import {PaymentsListComponent} from './components/payments-list/payments-list.component';
+import {PaymentDetailsComponent} from './components/payments-list/payment-details/payment-details.component';
+import {SecuredNotesListComponent} from './components/secured-notes-list/secured-notes-list.component';
+import {SecuredNoteDetailsComponent} from './components/secured-notes-list/secured-note-details/secured-note-details.component';
 
 const routes: Routes = [
   {

@@ -4,8 +4,8 @@ import {filter} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {map} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../app.module';
-import {userQuery} from '../store/root.actions';
+import {AppState} from '../../app.module';
+import {userQuery} from '../../store/root.actions';
 
 @Component({
   selector: 'lockdown-home',

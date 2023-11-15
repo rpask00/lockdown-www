@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Actions, ofType} from '@ngrx/effects';
-import {AppState} from '../app.module';
+import {AppState} from '../../app.module';
 import {Store} from '@ngrx/store';
-import {userLoading} from '../store/root.selectors';
-import {userQuery} from '../store/root.actions';
-import {LoginRequest, UserDto} from '../store/root.state';
+import {userLoading} from '../../store/root.selectors';
+import {userQuery} from '../../store/root.actions';
+import {LoginRequest, UserDto} from '../../store/root.state';
 import {startWith} from 'rxjs';
 
 @Component({

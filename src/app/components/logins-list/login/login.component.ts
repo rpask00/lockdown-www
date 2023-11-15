@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {Login} from '../../store/root.state';
+import {Login} from '../../../store/root.state';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

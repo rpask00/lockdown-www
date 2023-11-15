@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {IdType} from '../store/root.state';
-import {AppState} from '../app.module';
+import {IdType} from '../../store/root.state';
+import {AppState} from '../../app.module';
 import {Store} from '@ngrx/store';
-import {loginQuery} from '../store/root.actions';
-import {selectLogins, selectLoginsLoading} from '../store/root.selectors';
+import {loginQuery} from '../../store/root.actions';
+import {selectLogins, selectLoginsLoading} from '../../store/root.selectors';
 import {FormControl} from '@angular/forms';
 
 @Component({

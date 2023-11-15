@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CardColor, Payment} from '../store/root.state';
+import {CardColor, Payment} from '../../store/root.state';
 import {Store} from '@ngrx/store';
-import {paymentQuery} from '../store/root.actions';
-import {selectPaymentLoading, selectPayments} from '../store/root.selectors';
-import {AppState} from '../app.module';
+import {paymentQuery} from '../../store/root.actions';
+import {selectPaymentLoading, selectPayments} from '../../store/root.selectors';
+import {AppState} from '../../app.module';
 
 @Component({
   selector: 'lockdown-payments-list',

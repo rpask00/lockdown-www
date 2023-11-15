@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Payment} from '../../store/root.state';
+import {Payment} from '../../../store/root.state';
 
 @Component({
   selector: 'lockdown-payment',

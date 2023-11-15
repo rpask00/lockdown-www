@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {SecuredNote} from '../../store/root.state';
+import {SecuredNote} from '../../../store/root.state';
 
 @Component({
   selector: 'lockdown-secured-note',

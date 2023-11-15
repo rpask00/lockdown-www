@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {AppState} from '../../app.module';
+import {AppState} from '../../../app.module';
 import {Store} from '@ngrx/store';
-import {CardColor, IdType, SecuredNoteDto} from '../../store/root.state';
-import {selectNoteAttachments, selectSecuredNote, selectSecuredNoteLoading} from '../../store/root.selectors';
-import {noteAttachmentsQuery, securedNotesQuery} from '../../store/root.actions';
+import {CardColor, IdType, SecuredNoteDto} from '../../../store/root.state';
+import {selectNoteAttachments, selectSecuredNote, selectSecuredNoteLoading} from '../../../store/root.selectors';
+import {noteAttachmentsQuery, securedNotesQuery} from '../../../store/root.actions';
 import {firstValueFrom} from 'rxjs';
 import {filter} from 'rxjs/operators';
 

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {firstValueFrom} from 'rxjs';
-import {CardColor, PaymentDto} from '../../store/root.state';
+import {CardColor, PaymentDto} from '../../../store/root.state';
 import {ActivatedRoute} from '@angular/router';
-import {selectPayment, selectPaymentLoading} from '../../store/root.selectors';
+import {selectPayment, selectPaymentLoading} from '../../../store/root.selectors';
 import {filter} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../app.module';
-import {paymentQuery} from '../../store/root.actions';
+import {AppState} from '../../../app.module';
+import {paymentQuery} from '../../../store/root.actions';
 
 @Component({
   selector: 'lockdown-payment-details',

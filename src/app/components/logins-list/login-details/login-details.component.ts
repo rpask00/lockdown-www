@@ -1,13 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {loginQuery} from '../../store/root.actions';
+import {loginQuery} from '../../../store/root.actions';
 import {ActivatedRoute} from '@angular/router';
-import {selectLogin, selectLoginLoading} from '../../store/root.selectors';
-import {AppState} from '../../app.module';
+import {selectLogin, selectLoginLoading} from '../../../store/root.selectors';
+import {AppState} from '../../../app.module';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {LoginDto} from '../../store/root.state';
+import {LoginDto} from '../../../store/root.state';
 import {filter} from 'rxjs/operators';
 import {firstValueFrom} from 'rxjs';
 

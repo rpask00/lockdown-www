@@ -2,8 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
 
-// noinspection AngularMissingOrInvalidDeclarationInModule
-@Component({template: ''})
+@Component({template: '', standalone: true})
 export class DestroyerComponent implements OnDestroy {
   private _destroy$ = new Subject<void>();
 

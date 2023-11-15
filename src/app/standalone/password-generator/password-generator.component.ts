@@ -1,10 +1,27 @@
 import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject, map} from 'rxjs';
+import { BehaviorSubject, map} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {CommonModule} from '@angular/common';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'lockdown-password-generator',
+  standalone: true,
   templateUrl: './password-generator.component.html',
+  imports: [
+    MatExpansionModule,
+    MatProgressBarModule,
+    CommonModule,
+    ClipboardModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    FormsModule
+  ],
   styleUrls: ['./password-generator.component.scss']
 })
 export class PasswordGeneratorComponent implements OnInit {

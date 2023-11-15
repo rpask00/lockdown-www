@@ -1,9 +1,16 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'loader-transparent-container',
+  standalone: true,
   templateUrl: './loader-transparent.component.html',
+  imports: [
+    MatProgressSpinnerModule,
+    CommonModule
+  ],
   styleUrls: ['./loader-transparent.component.scss']
 })
 export class LoaderTransparentComponent implements OnDestroy {
@@ -34,7 +41,8 @@ export class LoaderTransparentComponent implements OnDestroy {
 
   private _loading: boolean = true;
 
-  constructor(private _detector: ChangeDetectorRef) {}
+  constructor(private _detector: ChangeDetectorRef) {
+  }
 
   ngOnDestroy(): void {
     if (this._isLoadingSub) {

@@ -23,7 +23,7 @@ import {ClickPreventDefaultDirective} from './directives/click-prevent-default.d
 import {LoginDetailsComponent} from './logins-list/login-details/login-details.component';
 import {RootState} from './store/root.state';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {LoaderTransparentComponent} from './components/loader-transparent/loader-transparent.component';
+import {LoaderTransparentComponent} from './standalone/loader-transparent/loader-transparent.component';
 import {AuthComponent} from './auth/auth.component';
 import {HomeComponent} from './home/home.component';
 import {MatInputModule} from '@angular/material/input';
@@ -42,11 +42,10 @@ import {CreditCardDirectivesModule} from 'angular-cc-library';
 import {SecuredNotesListComponent} from './secured-notes-list/secured-notes-list.component';
 import {SecuredNoteComponent} from './secured-notes-list/secured-note/secured-note.component';
 import {SecuredNoteDetailsComponent} from './secured-notes-list/secured-note-details/secured-note-details.component';
-import {TableDateComponent} from './components/table-date/table-date.component';
+import {TableDateComponent} from './standalone/table-date/table-date.component';
 import {FileSizePipe} from './pipes/filesize.pipe';
-import {ImportFileComponent} from './components/import-file/import-file.component';
-import {DragDropDirective} from './components/import-file/drag-drop.directive';
-import {PasswordGeneratorComponent} from './components/password-generator/password-generator.component';
+import {ImportFileComponent} from './standalone/import-file/import-file.component';
+import {PasswordGeneratorComponent} from './standalone/password-generator/password-generator.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -64,7 +63,6 @@ export interface AppState {
     ClickStopPropagationDirective,
     ClickPreventDefaultDirective,
     LoginDetailsComponent,
-    LoaderTransparentComponent,
     AuthComponent,
     HomeComponent,
     PaymentsListComponent,
@@ -73,11 +71,7 @@ export interface AppState {
     SecuredNotesListComponent,
     SecuredNoteComponent,
     SecuredNoteDetailsComponent,
-    TableDateComponent,
-    ImportFileComponent,
-    DragDropDirective,
-    FileSizePipe,
-    PasswordGeneratorComponent
+    FileSizePipe
   ],
   imports: [
     BrowserModule,
@@ -108,7 +102,11 @@ export interface AppState {
     MatCheckboxModule,
     FormsModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    PasswordGeneratorComponent,
+    TableDateComponent,
+    LoaderTransparentComponent,
+    ImportFileComponent
   ],
   providers: [
     {

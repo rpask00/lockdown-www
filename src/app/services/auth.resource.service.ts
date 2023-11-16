@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {LoginRequest, User, UserDto} from '../store/root.state';
-import {Observable} from 'rxjs';
+import {Observable, shareReplay, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,24 @@ import {Observable} from 'rxjs';
 export class AuthResource {
   readonly resource = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  status(): Observable<boolean> {
+  public status$ = this._buildStatusChecker();
+
+  private _buildStatusChecker(): Observable<boolean> {
+    return this._checkStatus().pipe(
+      shareReplay(1),
+      tap((status) => {
+        if (!status) {
+          this.status$ = this._buildStatusChecker();
+        }
+      })
+    );
+  }
+
+
+  private _checkStatus(): Observable<boolean> {
     return this.http.get<boolean>(`${this.resource}/status`, {withCredentials: true});
   }
 

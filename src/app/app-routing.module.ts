@@ -7,7 +7,10 @@ import {HomeComponent} from './components/home/home.component';
 import {PaymentsListComponent} from './components/payments-list/payments-list.component';
 import {PaymentDetailsComponent} from './components/payments-list/payment-details/payment-details.component';
 import {SecuredNotesListComponent} from './components/secured-notes-list/secured-notes-list.component';
-import {SecuredNoteDetailsComponent} from './components/secured-notes-list/secured-note-details/secured-note-details.component';
+import {
+  SecuredNoteDetailsComponent
+} from './components/secured-notes-list/secured-note-details/secured-note-details.component';
+import {isAuthenticatedGuard} from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,6 +20,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [isAuthenticatedGuard],
     children: [
       {
         path: 'logins',
@@ -68,4 +72,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

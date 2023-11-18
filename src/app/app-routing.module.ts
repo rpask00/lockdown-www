@@ -63,9 +63,14 @@ const routes: Routes = [
         path: 'secured-note/new',
         component: SecuredNoteDetailsComponent,
         outlet: 'details'
+      },
+      {
+        path: '**',
+        redirectTo: 'logins',
+        pathMatch: 'full'
       }
     ]
-  }
+  },
 ];
 
 @NgModule({

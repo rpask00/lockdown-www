@@ -43,9 +43,9 @@
     <mat-form-field appearance="outline" class="my-2">
       <mat-label>Color</mat-label>
       <mat-select formControlName="color">
-        <mat-option [style.color]="color" *ngFor="let color of card_colors" [value]="color">{{
-          color.toUpperCase()
-        }}</mat-option>
+        <mat-option *ngFor="let color of card_colors" [value]="color">
+          <span [style.color]="color" >{{color.toUpperCase()}}</span>
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
